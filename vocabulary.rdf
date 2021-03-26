@@ -1,0 +1,106 @@
+@prefix focu: <http://focu.io/schema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dce: <http://purl.org/dc/elements/1.1/>.
+@prefix vivo: <http://vivoweb.org/ontology/core#>.
+
+# Classes
+# -----------------------------------
+
+focu:CourseEvent
+    a rdfs:Class;
+	rdfs:subClassOf dbo:Event;
+    rdfs:label "Course Event"@en;
+    rdfs:comment "A course event can be any event that is associated with a given course. This could be a Lecture, a Lab or a Tutorial related to a given course"@en.
+
+focu:Lecture
+    a rdfs:Class;
+    rdfs:subClassOf focu:CourseEvent;
+    rdfs:label "Lecture"@en;
+    rdfs:comment "An oral presentation intended to present information or teach people about a particular subject for a Course at a university by a college teacher."@en.
+
+focu:Lab
+    a rdfs:Class;
+    rdfs:subClassOf focu:CourseEvent;
+    rdfs:label "Lab"@en;
+    rdfs:comment "Lab related to a given course"@en.
+
+focu:Tutorial
+    a rdfs:Class;
+    rdfs:subClassOf focu:CourseEvent;
+    rdfs:label "Tutorial"@en;
+    rdfs:comment "A tutorial, in education, is a method of transferring knowledge and may be used as a part of a learning process. More interactive and specific than a book or a lecture, a tutorial seeks to teach by example and supply the information to complete a certain task. A tutorial can be taken in many forms, ranging from a set of instructions to complete a task to an interactive problem solving session"@en.
+
+focu:Topic
+    a rdfs:Class;
+    rdfs:label "Topic"@en;
+    rdfs:comment "A topic covered in a given lecture or course."@en.
+
+# Properties
+# -----------------------------------
+
+focu:courses
+    a rdfs:Property;
+    rdfs:domain dbo:University;
+    rdfs:range vivo:Course;
+    rdfs:label "courses"@en;
+    rdfs:comment "Courses of a given university"@en.
+
+focu:lectures
+    a rdfs:Property;
+    rdfs:domain vivo:Course;
+    rdfs:range focu:Lecture;
+    rdfs:label "lectures"@en;
+    rdfs:comment "Lectures of a given course"@en.
+
+focu:topics
+    a rdfs:Property;
+    rdfs:domain vivo:Course, focu:CourseEvent;
+    rdfs:range focu:Topic;
+    rdfs:label "topics"@en;
+    rdfs:comment "Topics of a given course or lecture"@en.
+
+focu:outlines
+    a rdfs:Property;
+    rdfs:domain vivo:Course;
+    rdfs:range dbo:Document;
+    rdfs:label "outlines"@en;
+    rdfs:comment "The outlines/syllabus of a given course"@en.
+
+focu:slides
+    a rdfs:Property;
+    rdfs:domain focu:CourseEvent;
+    rdfs:range dbo:Document;
+    rdfs:label "slides"@en;
+    rdfs:comment "The slides of a given lecture"@en.
+
+focu:worksheets
+    a rdfs:Property;
+    rdfs:domain focu:CourseEvent;
+    rdfs:range dbo:Document;
+    rdfs:label "worksheets"@en;
+    rdfs:comment "The worksheets of a given lecture"@en.
+
+focu:readings
+    a rdfs:Property;
+    rdfs:domain focu:CourseEvent;
+    rdfs:range dbo:Document;
+    rdfs:label "readings"@en;
+    rdfs:comment "The readings of a given lecture"@en.
+
+focu:labs
+    a rdfs:Property;
+    rdfs:domain focu:Lecture;
+    rdfs:range focu:Lab;
+    rdfs:label "labs"@en;
+    rdfs:comment "The labs of a given lecture"@en.
+
+focu:tutorials
+    a rdfs:Property;
+    rdfs:domain focu:Lecture;
+    rdfs:range focu:Tutorial;
+    rdfs:label "tutorials"@en;
+    rdfs:comment "The tutorials of a given lecture"@en.
+
+
