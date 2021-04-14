@@ -28,3 +28,10 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_goodbye
+
+- story: get course info
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: about_course
+    - action: action_course_info

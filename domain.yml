@@ -8,6 +8,7 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - about_course
 
 responses:
   utter_greet:
@@ -32,3 +33,14 @@ responses:
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+
+actions:
+  - action_course_info
+
+entities:
+  - course
+
+slots:
+  course:
+    type: any
+    initial_value: "initial_course"
