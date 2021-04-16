@@ -35,3 +35,31 @@ class ActionCourseInfo(Action):
         
         dispatcher.utter_message(text=f"Here's what I found about {course} - {course_name}:\n{course_description}")
         return []
+
+
+class ActionCourseTopicsCovered(Action):
+
+    def name(self) -> Text:
+        return "action_course_topics_covered"
+
+    def run(self, dispatcher: CollectingDispatcher, 
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        course = tracker.slots['course']
+        if course is None:
+            dispatcher.utter_message(text=f"Sorry, I'm not sure I understand")
+            return []
+        
+        topics = query.get_course_topics(graph, course)
+        if topics is None or not topics:
+            dispatcher.utter_message(text=f"Sorry, I can't seem to find any topics covered in {course}")
+            return []
+
+        message = f"The topic{'s' if len(topics) > 1 else ''} covered by {course} {'are' if len(topics) > 1 else 'is'}:\n"
+        for topic in topics:
+            t, link = topic
+            message += f"* {t.split('#')[1]} - ({link})\n"
+    
+        dispatcher.utter_message(text=message)
+        return []

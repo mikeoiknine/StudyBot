@@ -112,3 +112,12 @@ nlu:
     - Can you tell me about [Coen 445](course) ?
     - Can you tell me about [acco 465](course) ?
     - Can you tell me about [__oov__](course) ?
+
+- intent: about_course_topic
+  examples: |
+    - What topics are covered in [Coen 445](course)?
+    - What topics are covered in [__oov__](course)?
+    - What topics are covered in [__oov__](course) ?
+    - What topics are covered in [Coen 445](course)
+    - What's covered in [Coen 445](course)?
+    - What would I learn in [__oov__](course)?
