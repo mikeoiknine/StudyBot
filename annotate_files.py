@@ -36,4 +36,4 @@ for subdir, dirs, files in os.walk('./data/converted_data/Courses'):
         if filepath.endswith(".txt"):
             annotations_dict = get_spotlight_annotated_file_as_dictionary(filepath)
             dict_filepath_annotations[filepath] = annotations_dict
-            save_text_to_file(json.dumps(annotations_dict), annotated_files_path_prefix+filepath[6:-4]+'.txt') #remove ./data, append new file extension
+            save_text_to_file(json.dumps(annotations_dict), annotated_files_path_prefix+filepath[21:-4]+'.txt') #remove ./data/converted_data, append new file extension
