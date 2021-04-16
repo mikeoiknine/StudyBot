@@ -121,3 +121,18 @@ nlu:
     - What topics are covered in [Coen 445](course)
     - What's covered in [Coen 445](course)?
     - What would I learn in [__oov__](course)?
+
+- intent: topic_which_course
+  examples: |
+    - Which courses cover [Knowledge Graphs](topic)?
+    - Which courses cover [Networking](topic)?
+    - Which courses cover [Mathematics](topic)?
+    - Which courses cover [Geography](topic)?
+    - Which courses cover [Algorithms](topic)?
+    - Which courses cover [data structures](topic)?
+    - Which courses cover [international politics](topic)?
+    - Which courses cover [__oov__](topic)?
+    - Which courses cover [__oov__](topic)?
+    - Which courses should I take to learn about [politics](topic)?
+    - Which courses should I take if I want to learn [Artificial Intelligence](topic)?
+    - Which courses cover the topic [Knowledge Graph](topic)?

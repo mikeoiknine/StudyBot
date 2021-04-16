@@ -10,6 +10,7 @@ intents:
   - bot_challenge
   - about_course
   - about_course_topic
+  - topic_which_course
 
 responses:
   utter_greet:
@@ -38,11 +39,15 @@ session_config:
 actions:
   - action_course_info
   - action_course_topics_covered
+  - action_topic_which_courses
 
 entities:
   - course
+  - topic
 
 slots:
   course:
     type: any
     initial_value: "initial_course"
+  topic:
+    type: text

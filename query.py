@@ -1,4 +1,4 @@
-from rdflib import Graph, Namespace, URIRef
+from rdflib import Graph, Namespace, URIRef, Literal
 from rdflib.plugins.sparql import prepareQuery
 
 FOCU = Namespace("http://focu.io/schema#")
@@ -85,3 +85,47 @@ def get_course_topics(graph, course):
         if topic is not None and link is not None:
             topics.append((str(topic), link))
     return topics
+
+def get_courses_covering_topic(graph, topicname):
+    """
+    Query the graph for all courses that cover a given topic
+    """
+
+    print(topicname)
+
+    q = prepareQuery(
+        """
+        SELECT ?course ?coursesubject ?coursenumber ?coursename WHERE { 
+            ?course a vivo:Course; 
+                    dce:subject ?coursesubject;
+                    dbp:number ?coursenumber;
+                    dbp:name ?coursename;
+                    focu:topics ?topic.
+            ?topic a focu:Topic;
+                    dbp:name ?topicname
+        }    
+        """,
+        initNs = {
+            "focudata": FOCUDATA,
+            "vivo": VIVO,
+            "focu": FOCU,
+            "rdfs": RDFS,
+            "dce": DCE,
+            "dbp": DBP
+        }
+    )
+
+    rows = list(graph.query(q, initBindings={"topicname": Literal(topicname)}))
+    if rows is None or not rows:
+        return None 
+
+    courses = []
+    for row in rows:
+        course = row.get("course", None)
+        coursesubject = row.get("coursesubject", None)
+        coursenumber = row.get("coursenumber", None)
+        coursename = row.get("coursename", None)
+
+        if course is not None:
+            courses.append((str(course), coursesubject, coursenumber, coursename))
+    return courses

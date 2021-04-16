@@ -42,3 +42,10 @@ stories:
     - action: utter_greet
     - intent: about_course_topic
     - action: action_course_topics_covered
+
+- story: get courses covering topic
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: topic_which_course
+    - action: action_topic_which_courses
