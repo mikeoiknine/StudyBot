@@ -9,6 +9,7 @@ intents:
   - mood_unhappy
   - bot_challenge
   - about_course
+  - about_course_topic
 
 responses:
   utter_greet:
@@ -36,6 +37,7 @@ session_config:
 
 actions:
   - action_course_info
+  - action_course_topics_covered
 
 entities:
   - course

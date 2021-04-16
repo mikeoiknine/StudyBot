@@ -35,3 +35,10 @@ stories:
     - action: utter_greet
     - intent: about_course
     - action: action_course_info
+
+- story: get course info
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: about_course_topic
+    - action: action_course_topics_covered
