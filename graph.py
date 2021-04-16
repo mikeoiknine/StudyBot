@@ -110,7 +110,7 @@ def build_local_course_graph():
         # Add lectures to graph
         raw_lectures = raw_course.get("Lectures", None)
         if raw_lectures is not None:
-            course_lectures = build_lecture_graph(raw_lectures)
+            course_lectures = build_lecture_graph(raw_lectures, short_name)
             g += course_lectures
 
             # Create link from this course to each of its lectures
@@ -119,7 +119,7 @@ def build_local_course_graph():
     return g
 
 
-def build_lecture_graph(lectures):
+def build_lecture_graph(lectures, course_name):
     """
     Builds and returns the graph representing the detailed Lectures
     found in the data/Courses/*/Lectures sub-directory.
@@ -153,27 +153,35 @@ def build_lecture_graph(lectures):
                           raw_lecture.get("Readings", None))
 
         # Add Labs associated to this lecture
-        lab_uris = add_uris_to_graph(
-            g, lecture, FOCU.labs, raw_lecture.get("Labs", None))
+        lab_ref = add_course_event_to_graph(g, course_name, lecture_number, "Lab",
+                                            FOCU.Lab, raw_lecture.get("Labs", None))
+        if lab_ref is not None:
+            g.add((lecture, FOCU.labs, lab_ref))
 
         # Add Tutorials associated to this lecture
-        tut_uris = add_uris_to_graph(
-            g, lecture, FOCU.tutorials, raw_lecture.get("Tutorials", None))
-
-        # Create tutorial instance in graph
-        for uri in lab_uris:
-            g.add((uri, RDF.type, FOCU.Lab))
-
-        # Create tutorial instance in graph
-        for uri in tut_uris:
-            g.add((uri, RDF.type, FOCU.Tutorial))
+        tut_ref = add_course_event_to_graph(g, course_name, lecture_number, "Tutorial",
+                                            FOCU.Tutorial, raw_lecture.get("Tutorials", None))
+        if tut_ref is not None:
+            g.add((lecture, FOCU.tutorials, tut_ref))
 
     return g
 
 
+def add_course_event_to_graph(g, course_name, lecture_number, name, obj, paths):
+    if paths is None:
+        return
+
+    event_name = f"{course_name}_{name}_{lecture_number}"
+    event_ref = URIRef(FOCUDATA + event_name)
+    g.add((event_ref, RDF.type, obj))
+
+    add_uris_to_graph(g, event_ref, FOCU.worksheets, paths)
+    return event_ref
+
+
 def add_uris_to_graph(g, subject, predicate, paths):
     """
-    Converts all the given paths to locally resolvable URIs and adds them 
+    Converts all the given paths to locally resolvable URIs and adds them
     as objects to the graph, g, with the given subject and predicate
     """
     if paths is None:
