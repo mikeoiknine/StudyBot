@@ -11,7 +11,7 @@ DBO = Namespace("http://dbpedia.org/ontology/")
 DBP = Namespace("http://dbpedia.org/property/")
 DCE = Namespace("http://purl.org/dc/elements/1.1/")
 VIVO = Namespace("http://vivoweb.org/ontology/core#")
-
+dbr = "http://dbpedia.org/resource/"
 
 def build_graph():
     """
@@ -179,17 +179,28 @@ def add_course_event_to_graph(g, course_name, lecture_number, name, obj, paths):
     return event_ref
 
 
-def add_uris_to_graph(g, subject, predicate, paths):
+def add_uris_to_graph(g, subject, predicate, file_dicts):
     """
-    Converts all the given paths to locally resolvable URIs and adds them
+    Converts all the given file_dicts to locally resolvable URIs and adds them
     as objects to the graph, g, with the given subject and predicate
     """
-    if paths is None:
+    if file_dicts is None:
         return []
 
     uris = []
-    for path in paths:
-        uri = URIRef(f"file:{urllib.request.pathname2url(path)}")
-        g.add((subject, predicate, uri))
-        uris.append(uri)
+    for dict in file_dicts:
+        docURI = URIRef(f"file:{urllib.request.pathname2url(dict['file_path'])}")
+        g.add((docURI, RDF.type, DBO.document))
+
+        # add each topic in the db and link to doc
+        for annotation in dict.get('annotations', {}).get('Annotation',{}).get('Resources',{}).get('Resource',{}): #conditional chaining
+            topicName = annotation['@URI'].replace(dbr, '') # get name from dbpedia resource
+            topicURI = URIRef(FOCUDATA + topicName)
+            g.add((topicURI, RDF.type, FOCU.Topic))
+            g.add((topicURI, DBP.name, Literal(annotation['@surfaceForm'])))
+            g.add((topicURI, RDFS.seeAlso, URIRef(annotation['@URI'])))
+            g.add((docURI, FOCU.topics, topicURI))
+
+        g.add((subject, predicate, docURI))
+        uris.append(docURI)
     return uris
