@@ -1,6 +1,8 @@
 import time
-from graph import build_graph
+import query
 
+from rdflib import Graph
+from graph import build_graph
 
 def generate_graph():
     print("Building graph...")
@@ -8,6 +10,18 @@ def generate_graph():
     g = build_graph()
     print("Done, took:", (time.time() - start_time), "seconds")
     return g
+
+def fetch_or_build_graph():
+    graph = Graph()
+    graph.parse("Graph.nt", format="ntriples")
+
+    if graph is None:
+        graph = generate_graph()
+        graph += generate_mock_topic_triples()
+
+        graph.serialize(destination="Graph.nt", format="ntriples")
+
+    return graph
 
 
 def generate_mock_topic_triples():
@@ -42,7 +56,10 @@ def generate_mock_topic_triples():
 
 
 if __name__ == "__main__":
-    graph = generate_graph()
-    graph += generate_mock_topic_triples()
+    graph = fetch_or_build_graph()
+    # print(query.get_lecture_count(graph, "Comp 474"))
+    print(query.get_course_topics(graph, "Comp 474"))
+    # graph = generate_graph()
+    # graph += generate_mock_topic_triples()
 
-    graph.serialize(destination="Graph.nt", format="ntriples")
+    # graph.serialize(destination="Graph.nt", format="ntriples")

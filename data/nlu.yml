@@ -1,0 +1,138 @@
+version: "2.0"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - good afternoon
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+- intent: about_course
+  examples: |
+    - What is [Coen 445](course) about?
+    - What is [acco 465](course) about?
+    - What is [__oov__](course) about?
+    - What is [Coen 445](course) about
+    - What is [acco 465](course) about
+    - What is [__oov__](course) about
+    - Please Describe [Coen 445](course) 
+    - Describe [acco 465](course)
+    - Describe [__oov__](course)
+    - Please describe it
+    - Can you describe it?
+    - What is this course about?
+    - Can you tell me about it?
+    - Can you tell me about [Coen 445](course)?
+    - Can you tell me about [acco 465](course)?
+    - Can you tell me about [__oov__](course)?
+    - Can you tell me about [Coen 445](course) ?
+    - Can you tell me about [acco 465](course) ?
+    - Can you tell me about [__oov__](course) ?
+
+- intent: about_course_topic
+  examples: |
+    - What topics are covered in [Coen 445](course)?
+    - What topics are covered in [__oov__](course)?
+    - What topics are covered in [__oov__](course) ?
+    - What topics are covered in [Coen 445](course)
+    - What's covered in [Coen 445](course)?
+    - What would I learn in [__oov__](course)?
+
+- intent: topic_which_course
+  examples: |
+    - Which courses cover [Knowledge Graphs](topic)?
+    - Which courses cover [Networking](topic)?
+    - Which courses cover [Mathematics](topic)?
+    - Which courses cover [Geography](topic)?
+    - Which courses cover [Algorithms](topic)?
+    - Which courses cover [data structures](topic)?
+    - Which courses cover [international politics](topic)?
+    - Which courses cover [__oov__](topic)?
+    - Which courses cover [__oov__](topic)?
+    - Which courses should I take to learn about [politics](topic)?
+    - Which courses should I take if I want to learn [Artificial Intelligence](topic)?
+    - Which courses cover the topic [Knowledge Graph](topic)?
