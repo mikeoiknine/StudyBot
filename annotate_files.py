@@ -15,8 +15,7 @@ def create_directory_if_path_doesnt_exist(file_path):
         try:
             os.makedirs(os.path.dirname(file_path))
         except OSError as exc: # Guard against race condition
-            if exc.errno != errno.EEXIST:
-                raise
+            raise
 
 def save_text_to_file(text, file_path):
     create_directory_if_path_doesnt_exist(file_path)
@@ -28,12 +27,14 @@ annotated_files_path_prefix = "./data/annotated_data/"
 
 dict_filepath_annotations = {}
 
-for subdir, dirs, files in os.walk('./data/converted_data/Courses'):
-    for file in files:
-        #print os.path.join(subdir, file)
-        filepath = subdir + os.sep + file
+if __name__ == "__main__":
 
-        if filepath.endswith(".txt"):
-            annotations_dict = get_spotlight_annotated_file_as_dictionary(filepath)
-            dict_filepath_annotations[filepath] = annotations_dict
-            save_text_to_file(json.dumps(annotations_dict), annotated_files_path_prefix+filepath[21:-4]+'.txt') #remove ./data/converted_data, append new file extension
+    for subdir, dirs, files in os.walk('./data/preprocessed_data/Courses'):
+        for file in files:
+            #print os.path.join(subdir, file)
+            filepath = subdir + os.sep + file
+
+            if filepath.endswith(".txt"):
+                annotations_dict = get_spotlight_annotated_file_as_dictionary(filepath)
+                dict_filepath_annotations[filepath] = annotations_dict
+                save_text_to_file(json.dumps(annotations_dict), annotated_files_path_prefix+filepath[21:-4]+'.txt') #remove ./data/preprocessed_data, append new file extension

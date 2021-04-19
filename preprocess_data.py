@@ -31,7 +31,7 @@ def save_text_to_file(text, file_path):
     f.write(text)
     f.close()
 
-converted_files_path_prefix = "./data/converted_data/"
+converted_files_path_prefix = "./data/preprocessed_data/"
 
 for subdir, dirs, files in os.walk('./data/Courses'):
     for file in files:
