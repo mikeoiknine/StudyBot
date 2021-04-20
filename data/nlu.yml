@@ -1,6 +1,14 @@
 version: "2.0"
 
 nlu:
+- regex: university
+  examples: |
+    - University of Concordia
+    - Concordia University
+    - University of Toronto
+    - Waterloo University
+    - McGill University
+
 - intent: greet
   examples: |
     - hey
@@ -125,14 +133,71 @@ nlu:
 - intent: topic_which_course
   examples: |
     - Which courses cover [Knowledge Graphs](topic)?
-    - Which courses cover [Networking](topic)?
+    - Which courses cover [computer science](topic)?
+    - Which classes cover [Networking](topic)?
     - Which courses cover [Mathematics](topic)?
+    - Which courses cover [software engineering](topic)?
     - Which courses cover [Geography](topic)?
-    - Which courses cover [Algorithms](topic)?
+    - Which class covers [Algorithms](topic)?
     - Which courses cover [data structures](topic)?
     - Which courses cover [international politics](topic)?
     - Which courses cover [__oov__](topic)?
     - Which courses cover [__oov__](topic)?
     - Which courses should I take to learn about [politics](topic)?
-    - Which courses should I take if I want to learn [Artificial Intelligence](topic)?
+    - Which classes should I take if I want to learn [Artificial Intelligence](topic)?
     - Which courses cover the topic [Knowledge Graph](topic)?
+
+- intent: topic_which_slides
+  examples: |
+    - Find all slides for lectures that cover the topic [Knowledge Graph](topic)
+    - Find all slides for lectures that cover the topic [Artificial intelligence](topic)
+    - Find all slides for lectures that cover the topic [Internet](topic)
+    - Find all slides for lectures that cover the topic [networking](topic)
+    - Find all slides for lectures that cover the topic [computer science](topic)
+    - Find all slides for lectures that cover [Knowledge Graph](topic)
+    - Find all slides for lectures that cover [Artificial intelligence](topic)
+    - Find all slides for lectures that cover [Internet](topic)
+    - Find all slides for lectures that cover [networking](topic)
+    - Find all slides for lectures that cover [computer science](topic)
+    - Which slides cover the topic [Internet](topic)
+    - Which slides cover the topic [Mathematics](topic)
+    - Which slides cover the topic [data structures](topic)
+    - Which slides cover the topic [Networking](topic)
+    - Which slides cover the topic [artificial intelligence](topic)
+    - Which slides cover the topic [geography](topic)
+    - Which slides cover the [Internet](topic)
+    - Which slides cover [networking](topic)
+    - Which slides cover [Internet](topic)
+    - Which slides cover [computer science](topic)
+    - Which slides cover [Mathematics](topic)
+    - Which slides cover [data structures](topic)
+    - Which slides cover [Networking](topic)
+    - Which slides cover [artificial intelligence](topic)
+
+- intent: courses_no_lecture_slides
+  examples: |
+    - Which courses have no lecture slides?
+    - Which courses don't have lecture slides?
+
+- intent: courses_from_uni_covering_topic
+  examples: |
+    - Which courses from [Concordia University](university) cover the topic [Mathematics](topic)?
+    - Which courses at [Concordia University](university) cover the topic [data structures](topic)?
+    - Which courses at [__oov__](university) cover the topic [__oov__](topic)?
+    - Which courses from [University of Waterloo](university) cover the topic [artificial intelligence](topic)?
+    - Which courses at [Concordia University](university) cover the topic [computer science](topic)?
+    - Which courses from [University of Toronto](university) cover the topic [Networking](topic)?
+    - Which courses at [Concordia University](university) cover [computer science](topic)?
+    - Which courses from [University of Toronto](university) cover [Networking](topic)?
+    - Which courses at [McGill University](university) [Mathematics](topic)?
+    - Which courses from [McGill University](university) cover the topic [Mathematics](topic)?
+    - Which courses from [McGill University](university) [Mathematics](topic)?
+    - Which courses from [Concordia University](university) cover the topic [Mathematics](topic)?
+    - Which courses cover the topic [Mathematics](topic) at [Concordia University](university) ?
+    - Which courses cover the topic [data structures](topic) at [Concordia University](university) ?
+    - Which courses from [University of Waterloo](university) cover the topic [artificial intelligence](topic)?
+    - Which courses cover the topic [computer science](topic) at [Concordia University](university) ?
+    - Which courses cover [Networking](topic) from [University of Toronto](university) ?
+    - Which courses cover the topic [Mathematics](topic) from [McGill University](university)?
+    - Which courses cover [Mathematics](topic) from [McMaster University](university)?
+    - Which courses cover the topic [Mathematics](topic) at [Concordia University](university) ?

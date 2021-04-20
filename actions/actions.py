@@ -85,6 +85,82 @@ class ActionTopicsCoveredInCourse(Action):
 
         message = f"The following courses{'s' if len(courses) > 1 else ''} {'cover' if len(courses) > 1 else 'covers'} the topic {topic}:\n"
         for course in courses:
+            courseuri, coursesubject, coursenumber, coursename, doccount = course
+            message += f"* {courseuri.split('#')[1]} - {coursesubject} {coursenumber} {coursename} COUNT: {doccount}\n"
+    
+        dispatcher.utter_message(text=message)
+        return []
+
+class ActionTopicsCoveredInSlides(Action):
+
+    def name(self) -> Text:
+        return "action_topic_which_slides"
+
+    def run(self, dispatcher: CollectingDispatcher, 
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        topic = tracker.slots['topic']
+        if topic is None:
+            dispatcher.utter_message(text=f"Sorry, I'm not sure I understand")
+            return []
+        
+        slides = query.slides_for_lectures_covering_topic(graph, topic)
+        if slides is None or not slides:
+            dispatcher.utter_message(text=f"Sorry, I can't seem to find any slides that cover {topic}")
+            return []
+
+        message = f"The following slides{'s' if len(slides) > 1 else ''} {'cover' if len(slides) > 1 else 'covers'} the topic {topic}:\n"
+        for slide in slides:
+            message += f"* {slide}\n"
+    
+        dispatcher.utter_message(text=message)
+        return []
+
+class ActionCoursesNoLectureSlides(Action):
+
+    def name(self) -> Text:
+        return "action_courses_no_lecture_slides"
+
+    def run(self, dispatcher: CollectingDispatcher, 
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        courses = query.get_courses_no_lecture_slides(graph)
+        if courses is None or not courses:
+            dispatcher.utter_message(text=f"Sorry, I can't seem to find any courses that don't have lecture slides")
+            return []
+
+        message = f"The following courses{'s' if len(courses) > 1 else ''} {'cover' if len(courses) > 1 else 'covers'} have no lecture slides:\n"
+        for course in courses:
+            courseuri = course
+            message += f"* {courseuri.split('#')[1]}, "
+    
+        dispatcher.utter_message(text=message)
+        return []
+
+class ActionCoursesFromUniCoveringTopic(Action):
+
+    def name(self) -> Text:
+        return "action_courses_from_uni_covering_topic"
+
+    def run(self, dispatcher: CollectingDispatcher, 
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        topic = tracker.slots['topic']
+        university = tracker.slots['university']
+        if topic is None or university is None:
+            dispatcher.utter_message(text=f"Sorry, I'm not sure I understand")
+            return []
+        
+        courses = query.courses_from_uni_covering_topic(graph, topic, university)
+        if courses is None or not courses:
+            dispatcher.utter_message(text=f"Sorry, I can't seem to find any courses that cover {topic} at {university}")
+            return []
+
+        message = f"The following courses{'s' if len(courses) > 1 else ''} {'cover' if len(courses) > 1 else 'covers'} the topic {topic} at {university}:\n"
+        for course in courses:
             courseuri, coursesubject, coursenumber, coursename = course
             message += f"* {courseuri.split('#')[1]} - {coursesubject} {coursenumber} {coursename}\n"
     

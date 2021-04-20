@@ -11,6 +11,9 @@ intents:
   - about_course
   - about_course_topic
   - topic_which_course
+  - topic_which_slides
+  - courses_no_lecture_slides
+  - courses_from_uni_covering_topic
 
 responses:
   utter_greet:
@@ -40,14 +43,20 @@ actions:
   - action_course_info
   - action_course_topics_covered
   - action_topic_which_courses
+  - action_topic_which_slides
+  - action_courses_no_lecture_slides
+  - action_courses_from_uni_covering_topic
 
 entities:
   - course
   - topic
+  - university
 
 slots:
   course:
     type: any
     initial_value: "initial_course"
   topic:
+    type: text
+  university:
     type: text
