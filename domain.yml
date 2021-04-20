@@ -50,6 +50,7 @@ actions:
   - action_courses_from_uni_covering_topic
   - action_courses_offered_by_uni
   - action_courses_with_labs
+  - action_topics_in_course_X_lecture_Y
 
 entities:
   - course
@@ -64,3 +65,5 @@ slots:
     type: text
   university:
     type: text
+  lec:
+    type: any

@@ -84,3 +84,10 @@ stories:
     - action: utter_greet
     - intent: courses_with_labs
     - action: action_courses_with_labs
+
+- story: get topics covered in course X lecture Y
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: topics_in_course_X_lecture_Y
+    - action: action_topics_in_course_X_lecture_Y

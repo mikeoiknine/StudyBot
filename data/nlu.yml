@@ -194,6 +194,15 @@ nlu:
     - Which courses have a lab?
     - Which courses have labs?
 
+- intent: topics_in_course_X_lecture_Y
+  examples: |
+    -Which topics are covered in [COMP 474](course) lecture [5](lec)?
+    -Which topics were covered in [COMP 474](course) lecture [3](lec)?
+    -Which topics are covered in [COMP 445](course) lecture [2](lec)?
+    -Which topics are covered in [Coen 445](course) lecture [11](lec)?
+    -Which topics were covered in [acco 465](course) lecture [4](lec)?
+    -Which topics were covered in [engr 371](course) lecture [8](lec)?
+
 - intent: courses_from_uni_covering_topic
   examples: |
     - Which courses from [Concordia University](university) cover the topic [Mathematics](topic)?

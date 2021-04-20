@@ -355,3 +355,53 @@ def get_courses_with_labs(graph):
         if course is not None:
             courses.append((str(course)))
     return courses
+
+def get_topics_in_course_X_lecture_Y(graph, course, lecture_number):
+    """
+    Query the graph for courses with a lab component
+    """
+
+    coursesubject, coursenumber = course.split(" ")
+    coursesubject = coursesubject.upper()
+    print(coursesubject)
+    print(coursenumber)
+    print(lecture_number)
+
+    q = prepareQuery(
+        """ SELECT ?lecture ?topic 
+            WHERE {
+            ?s rdf:type vivo:Course;
+                dce:subject ?coursesubject;
+                dbp:number ?coursenumber;
+                focu:lectures ?lecture .
+                {
+                    ?lecture dbp:number ?lecturenumber;
+                            focu:topics ?topic .
+                } UNION
+                {
+                    ?lecture focu:slides ?slides.
+                    ?slides focu:topics ?topic .
+                }
+
+            }
+            """,
+        initNs = {
+            "vivo": VIVO,
+            "focu": FOCU,
+            "rdf": RDF,
+            "dce": DCE,
+            "dbp": DBP
+        }
+    )
+    
+    rows = list(graph.query(q, initBindings={"coursesubject": Literal(coursesubject), "coursenumber": Literal(coursenumber), "lecturenumber": Literal(lecture_number)}))
+    if rows is None or not rows:
+        return None 
+
+    lecturetopics = []
+    for row in rows:
+        lecture = row.get("lecture", None)
+        topic = row.get("topic", None)
+        if lecture is not None and topic is not None:
+            lecturetopics.append((str(lecture), str(topic)))
+    return lecturetopics

@@ -215,3 +215,28 @@ class ActionCoursesWithLabs(Action):
     
         dispatcher.utter_message(text=message)
         return []
+
+class ActionTopicsCourseXLectureY(Action):
+
+    def name(self) -> Text:
+        return "action_topics_in_course_X_lecture_Y"
+
+    def run(self, dispatcher: CollectingDispatcher, 
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        course = tracker.slots['course']
+        lecture_number = tracker.slots['lec']
+
+        lecture_topics = query.get_topics_in_course_X_lecture_Y(graph, course, lecture_number)
+        if lecture_topics is None or not lecture_topics:
+            dispatcher.utter_message(text=f"Sorry, I can't seem to find any topics in this lecture of this course")
+            return []
+
+        message = f"The following topic{'s' if len(lecture_topics) > 1 else ''} {'cover' if len(lecture_topics) > 1 else 'covers'} in lecture {lecture_number} of course {course}:\n"
+        for lecture_topic in lecture_topics:
+            lectureuri, topicuri = lecture_topic
+            message += f"* {topicuri.split('#')[1]}, "
+    
+        dispatcher.utter_message(text=message)
+        return []
