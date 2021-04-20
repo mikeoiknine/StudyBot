@@ -6217,16 +6217,12 @@ Prerequisite: 30 credits; PSYC 200 or equivalent; six credits in Studio Arts."""
 <http://focu.io/data#Application_Layer_Part_1> a focu:Lecture ;
     dbp:name "Application_Layer_Part_1" ;
     dbp:number "3" ;
-    focu:labs <http://focu.io/data#COMP_445_Lab_3> ;
-    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%203%20-%20Application%20Layer%20Part%201/Slides/Wk3%20-%20Application%20Layer%20-%20Part1.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_445_Tutorial_3> .
+    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%203%20-%20Application%20Layer%20Part%201/Slides/Wk3%20-%20Application%20Layer%20-%20Part1.pdf> .
 
 <http://focu.io/data#Application_Layer_Part_2> a focu:Lecture ;
     dbp:name "Application_Layer_Part_2" ;
     dbp:number "4" ;
-    focu:labs <http://focu.io/data#COMP_445_Lab_4> ;
-    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%204%20-%20Application%20Layer%20Part%202/Slides/Wk4%20-%20Application%20Layer%20-%20Part2.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_445_Tutorial_4> .
+    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%204%20-%20Application%20Layer%20Part%202/Slides/Wk4%20-%20Application%20Layer%20-%20Part2.pdf> .
 
 <http://focu.io/data#Application_checkpointing> a focu:Topic ;
     dbp:name "checkpointing" ;
@@ -16917,58 +16913,6 @@ Prerequisite: COMP 346.""" ;
     dce:subject "COMP" ;
     rdfs:seeAlso <http://concordia.catalog.acalog.com/preview_course_nopop.php?catoid=1&coid=2713> .
 
-<http://focu.io/data#COMP_445_Lab_1> a focu:Lab .
-
-<http://focu.io/data#COMP_445_Lab_10> a focu:Lab .
-
-<http://focu.io/data#COMP_445_Lab_11> a focu:Lab .
-
-<http://focu.io/data#COMP_445_Lab_12> a focu:Lab .
-
-<http://focu.io/data#COMP_445_Lab_13> a focu:Lab .
-
-<http://focu.io/data#COMP_445_Lab_2> a focu:Lab .
-
-<http://focu.io/data#COMP_445_Lab_3> a focu:Lab .
-
-<http://focu.io/data#COMP_445_Lab_4> a focu:Lab .
-
-<http://focu.io/data#COMP_445_Lab_5> a focu:Lab .
-
-<http://focu.io/data#COMP_445_Lab_6> a focu:Lab .
-
-<http://focu.io/data#COMP_445_Lab_7> a focu:Lab .
-
-<http://focu.io/data#COMP_445_Lab_8> a focu:Lab .
-
-<http://focu.io/data#COMP_445_Lab_9> a focu:Lab .
-
-<http://focu.io/data#COMP_445_Tutorial_1> a focu:Tutorial .
-
-<http://focu.io/data#COMP_445_Tutorial_10> a focu:Tutorial .
-
-<http://focu.io/data#COMP_445_Tutorial_11> a focu:Tutorial .
-
-<http://focu.io/data#COMP_445_Tutorial_12> a focu:Tutorial .
-
-<http://focu.io/data#COMP_445_Tutorial_13> a focu:Tutorial .
-
-<http://focu.io/data#COMP_445_Tutorial_2> a focu:Tutorial .
-
-<http://focu.io/data#COMP_445_Tutorial_3> a focu:Tutorial .
-
-<http://focu.io/data#COMP_445_Tutorial_4> a focu:Tutorial .
-
-<http://focu.io/data#COMP_445_Tutorial_5> a focu:Tutorial .
-
-<http://focu.io/data#COMP_445_Tutorial_6> a focu:Tutorial .
-
-<http://focu.io/data#COMP_445_Tutorial_7> a focu:Tutorial .
-
-<http://focu.io/data#COMP_445_Tutorial_8> a focu:Tutorial .
-
-<http://focu.io/data#COMP_445_Tutorial_9> a focu:Tutorial .
-
 <http://focu.io/data#COMP_465> a vivo:Course ;
     dbp:name "Design and Analysis of Algorithms" ;
     dbp:number "465" ;
@@ -17010,8 +16954,6 @@ Prerequisite: COMP 352 or COEN 352.""" ;
     dce:subject "COMP" ;
     rdfs:seeAlso <http://concordia.catalog.acalog.com/preview_course_nopop.php?catoid=1&coid=2718> .
 
-<http://focu.io/data#COMP_474_Lab_1> a focu:Lab .
-
 <http://focu.io/data#COMP_474_Lab_10> a focu:Lab ;
     focu:worksheets <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%2010%20-%20Intro%20to%20Neural%20Networks/Labs/lab9.txt> .
 
@@ -17039,26 +16981,6 @@ Prerequisite: COMP 352 or COEN 352.""" ;
 
 <http://focu.io/data#COMP_474_Lab_9> a focu:Lab ;
     focu:worksheets <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%209%20-%20Text%20Mining%20Systems/Labs/lab8.txt> .
-
-<http://focu.io/data#COMP_474_Tutorial_1> a focu:Tutorial .
-
-<http://focu.io/data#COMP_474_Tutorial_10> a focu:Tutorial .
-
-<http://focu.io/data#COMP_474_Tutorial_2> a focu:Tutorial .
-
-<http://focu.io/data#COMP_474_Tutorial_3> a focu:Tutorial .
-
-<http://focu.io/data#COMP_474_Tutorial_4> a focu:Tutorial .
-
-<http://focu.io/data#COMP_474_Tutorial_5> a focu:Tutorial .
-
-<http://focu.io/data#COMP_474_Tutorial_6> a focu:Tutorial .
-
-<http://focu.io/data#COMP_474_Tutorial_7> a focu:Tutorial .
-
-<http://focu.io/data#COMP_474_Tutorial_8> a focu:Tutorial .
-
-<http://focu.io/data#COMP_474_Tutorial_9> a focu:Tutorial .
 
 <http://focu.io/data#COMP_476> a vivo:Course ;
     dbp:name "Advanced Game Development" ;
@@ -38882,7 +38804,6 @@ Prerequisite: Honours status.""" ;
     dbp:number "8" ;
     focu:labs <http://focu.io/data#COMP_474_Lab_8> ;
     focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%208%20-%20Intelligent%20Agents/Slides/slides08.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_474_Tutorial_8> ;
     focu:worksheets <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%208%20-%20Intelligent%20Agents/Worksheets/worksheet07.pdf> .
 
 <http://focu.io/data#Intelligent_Machine> a focu:Topic ;
@@ -38904,36 +38825,28 @@ Prerequisite: Honours status.""" ;
 <http://focu.io/data#Intro_to_Neural_Networks> a focu:Lecture ;
     dbp:name "Intro_to_Neural_Networks" ;
     dbp:number "10" ;
-    focu:labs <http://focu.io/data#COMP_474_Lab_10> ;
-    focu:tutorials <http://focu.io/data#COMP_474_Tutorial_10> .
+    focu:labs <http://focu.io/data#COMP_474_Lab_10> .
 
 <http://focu.io/data#Introduction> a focu:Lecture ;
     dbp:name "Introduction" ;
     dbp:number "1" ;
-    focu:labs <http://focu.io/data#COMP_445_Lab_1> ;
-    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%201%20-%20Introduction/Slides/Introduction.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_445_Tutorial_1> .
+    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%201%20-%20Introduction/Slides/Introduction.pdf> .
 
 <http://focu.io/data#Introduction_Part_2> a focu:Lecture ;
     dbp:name "Introduction_Part_2" ;
     dbp:number "2" ;
-    focu:labs <http://focu.io/data#COMP_445_Lab_2> ;
-    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%202%20-%20Introduction%20Part%202/Slides/Wk2-%20Introduction%20-%20part2.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_445_Tutorial_2> .
+    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%202%20-%20Introduction%20Part%202/Slides/Wk2-%20Introduction%20-%20part2.pdf> .
 
 <http://focu.io/data#Introduction_to_Intelligent_Systems> a focu:Lecture ;
     dbp:name "Introduction_to_Intelligent_Systems" ;
     dbp:number "1" ;
-    focu:labs <http://focu.io/data#COMP_474_Lab_1> ;
-    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%201%20-%20Introduction%20to%20Intelligent%20Systems/Slides/slides01.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_474_Tutorial_1> .
+    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%201%20-%20Introduction%20to%20Intelligent%20Systems/Slides/slides01.pdf> .
 
 <http://focu.io/data#Introduction_to_Machine_Learning_for_Intelligent_Systems> a focu:Lecture ;
     dbp:name "Introduction_to_Machine_Learning_for_Intelligent_Systems" ;
     dbp:number "7" ;
     focu:labs <http://focu.io/data#COMP_474_Lab_7> ;
     focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%207%20-%20Introduction%20to%20Machine%20Learning%20for%20Intelligent%20Systems/Slides/slides07.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_474_Tutorial_7> ;
     focu:worksheets <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%207%20-%20Introduction%20to%20Machine%20Learning%20for%20Intelligent%20Systems/Worksheets/worksheet06.pdf> .
 
 <http://focu.io/data#Italian_Greyhound> a focu:Topic ;
@@ -40103,7 +40016,6 @@ NOTE: Students who have received credit for EXCI 483 may not take this course fo
     dbp:number "4" ;
     focu:labs <http://focu.io/data#COMP_474_Lab_4> ;
     focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%204%20-%20Knowledge%20Base%20Queries/Slides/slides04.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_474_Tutorial_4> ;
     focu:worksheets <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%204%20-%20Knowledge%20Base%20Queries/Worksheets/worksheet03.pdf> .
 
 <http://focu.io/data#Knowledge_Graphs> a focu:Lecture ;
@@ -40112,7 +40024,6 @@ NOTE: Students who have received credit for EXCI 483 may not take this course fo
     focu:labs <http://focu.io/data#COMP_474_Lab_2> ;
     focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%202%20-%20Knowledge%20Graphs/Slides/slides02.pdf> ;
     focu:topics <http://focu.io/data#Knowledge_Graph> ;
-    focu:tutorials <http://focu.io/data#COMP_474_Tutorial_2> ;
     focu:worksheets <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%202%20-%20Knowledge%20Graphs/Worksheets/worksheet01.pdf> .
 
 <http://focu.io/data#Knowledge_Navigator> a focu:Topic ;
@@ -40847,7 +40758,6 @@ Prerequisite: 12 credits of LOYC courses; or permission of the College.""" ;
     dbp:number "5" ;
     focu:labs <http://focu.io/data#COMP_474_Lab_5> ;
     focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%205%20-%20Linked%20Open%20Data%20%26%20Applications/Slides/slides05.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_474_Tutorial_5> ;
     focu:worksheets <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%205%20-%20Linked%20Open%20Data%20%26%20Applications/Worksheets/worksheet04.pdf> .
 
 <http://focu.io/data#Lio> a focu:Topic ;
@@ -45083,37 +44993,27 @@ Prerequisite: Written permission of the Department of Music.""" ;
 <http://focu.io/data#Network_Layer_-_The_Control_Plane_Part_1> a focu:Lecture ;
     dbp:name "Network_Layer_-_The_Control_Plane_Part_1" ;
     dbp:number "11" ;
-    focu:labs <http://focu.io/data#COMP_445_Lab_11> ;
-    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%2011%20-%20Network%20Layer%20-%20The%20Control%20Plane%20Part%201/Slides/Wk11%20-%20Network%20Layer%20-%20The%20Control%20Plane%20-%20Part1.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_445_Tutorial_11> .
+    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%2011%20-%20Network%20Layer%20-%20The%20Control%20Plane%20Part%201/Slides/Wk11%20-%20Network%20Layer%20-%20The%20Control%20Plane%20-%20Part1.pdf> .
 
 <http://focu.io/data#Network_Layer_-_The_Control_Plane_Part_2> a focu:Lecture ;
     dbp:name "Network_Layer_-_The_Control_Plane_Part_2" ;
     dbp:number "12" ;
-    focu:labs <http://focu.io/data#COMP_445_Lab_12> ;
-    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%2012%20-%20Network%20Layer%20-%20The%20Control%20Plane%20Part%202/Slides/Wk12%20-%20Network%20Layer%20-%20The%20Control%20Plane%20-%20Part2.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_445_Tutorial_12> .
+    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%2012%20-%20Network%20Layer%20-%20The%20Control%20Plane%20Part%202/Slides/Wk12%20-%20Network%20Layer%20-%20The%20Control%20Plane%20-%20Part2.pdf> .
 
 <http://focu.io/data#Network_Layer_Part_1> a focu:Lecture ;
     dbp:name "Network_Layer_Part_1" ;
     dbp:number "8" ;
-    focu:labs <http://focu.io/data#COMP_445_Lab_8> ;
-    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%208%20-%20Network%20Layer%20Part%201/Slides/Wk8%20-%20Network%20Layer%20-%20The%20Data%20Plane%20-%20Part1.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_445_Tutorial_8> .
+    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%208%20-%20Network%20Layer%20Part%201/Slides/Wk8%20-%20Network%20Layer%20-%20The%20Data%20Plane%20-%20Part1.pdf> .
 
 <http://focu.io/data#Network_Layer_Part_2> a focu:Lecture ;
     dbp:name "Network_Layer_Part_2" ;
     dbp:number "9" ;
-    focu:labs <http://focu.io/data#COMP_445_Lab_9> ;
-    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%209%20-%20Network%20Layer%20Part%202/Slides/Wk9%20-%20Network%20Layer%20-%20The%20Data%20Plane%20-%20Part2.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_445_Tutorial_9> .
+    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%209%20-%20Network%20Layer%20Part%202/Slides/Wk9%20-%20Network%20Layer%20-%20The%20Data%20Plane%20-%20Part2.pdf> .
 
 <http://focu.io/data#Network_Layer_Part_3> a focu:Lecture ;
     dbp:name "Network_Layer_Part_3" ;
     dbp:number "10" ;
-    focu:labs <http://focu.io/data#COMP_445_Lab_10> ;
-    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%2010%20-%20Network%20Layer%20Part%203/Slides/Wk10%20-%20Network%20Layer%20-%20The%20Data%20Plane%20-%20Part3.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_445_Tutorial_10> .
+    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%2010%20-%20Network%20Layer%20Part%203/Slides/Wk10%20-%20Network%20Layer%20-%20The%20Data%20Plane%20-%20Part3.pdf> .
 
 <http://focu.io/data#Network_interface_controller> a focu:Topic ;
     dbp:name "network interface" ;
@@ -51580,7 +51480,6 @@ NOTE: Students who have received credit for RELI 332 or RELZ 312 may not take th
     dbp:number "6" ;
     focu:labs <http://focu.io/data#COMP_474_Lab_6> ;
     focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%206%20-%20Recommender%20Systems/Slides/slides06.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_474_Tutorial_6> ;
     focu:worksheets <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%206%20-%20Recommender%20Systems/Worksheets/worksheet05.pdf> .
 
 <http://focu.io/data#Reference_model> a focu:Topic ;
@@ -56110,8 +56009,7 @@ Prerequisite: TPER 331.""" ;
     dbp:name "Text_Mining_Systems" ;
     dbp:number "9" ;
     focu:labs <http://focu.io/data#COMP_474_Lab_9> ;
-    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%209%20-%20Text%20Mining%20Systems/Slides/slides09.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_474_Tutorial_9> .
+    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%209%20-%20Text%20Mining%20Systems/Slides/slides09.pdf> .
 
 <http://focu.io/data#The_Lego_Movie> a focu:Topic ;
     dbp:name "the lego movie" ;
@@ -56120,9 +56018,7 @@ Prerequisite: TPER 331.""" ;
 <http://focu.io/data#The_Link_Layer> a focu:Lecture ;
     dbp:name "The_Link_Layer" ;
     dbp:number "13" ;
-    focu:labs <http://focu.io/data#COMP_445_Lab_13> ;
-    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%2013%20-%20The%20Link%20Layer/Slides/Wk13%20-%20Link%20Layer.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_445_Tutorial_13> .
+    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%2013%20-%20The%20Link%20Layer/Slides/Wk13%20-%20Link%20Layer.pdf> .
 
 <http://focu.io/data#The_Next_Web> a focu:Topic ;
     dbp:name "the next web" ;
@@ -56191,23 +56087,17 @@ Prerequisite: TPER 331.""" ;
 <http://focu.io/data#Transport_Layer_Part_1> a focu:Lecture ;
     dbp:name "Transport_Layer_Part_1" ;
     dbp:number "5" ;
-    focu:labs <http://focu.io/data#COMP_445_Lab_5> ;
-    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%205%20-%20Transport%20Layer%20Part%201/Slides/Wk5%20-%20Transport%20Layer%20-%20Part1.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_445_Tutorial_5> .
+    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%205%20-%20Transport%20Layer%20Part%201/Slides/Wk5%20-%20Transport%20Layer%20-%20Part1.pdf> .
 
 <http://focu.io/data#Transport_Layer_Part_2> a focu:Lecture ;
     dbp:name "Transport_Layer_Part_2" ;
     dbp:number "6" ;
-    focu:labs <http://focu.io/data#COMP_445_Lab_6> ;
-    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%206%20-%20Transport%20Layer%20Part%202/Slides/Wk6%20-%20Transport%20Layer%20-%20Part2.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_445_Tutorial_6> .
+    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%206%20-%20Transport%20Layer%20Part%202/Slides/Wk6%20-%20Transport%20Layer%20-%20Part2.pdf> .
 
 <http://focu.io/data#Transport_Layer_Part_3> a focu:Lecture ;
     dbp:name "Transport_Layer_Part_3" ;
     dbp:number "7" ;
-    focu:labs <http://focu.io/data#COMP_445_Lab_7> ;
-    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%207%20-%20Transport%20Layer%20Part%203/Slides/Wk7%20-%20Transport%20Layer%20-%20Part3.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_445_Tutorial_7> .
+    focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20445/Lectures/Lecture%207%20-%20Transport%20Layer%20Part%203/Slides/Wk7%20-%20Transport%20Layer%20-%20Part3.pdf> .
 
 <http://focu.io/data#Treebank> a focu:Topic ;
     dbp:name "treebank" ;
@@ -56574,7 +56464,6 @@ NOTE: Students who have received credit for GEOG 491 may not take this course fo
     dbp:number "3" ;
     focu:labs <http://focu.io/data#COMP_474_Lab_3> ;
     focu:slides <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%203%20-%20Vocabularies%20%26%20Ontologies/Slides/slides03.pdf> ;
-    focu:tutorials <http://focu.io/data#COMP_474_Tutorial_3> ;
     focu:worksheets <file:///C:/Users/t_gauvin/Downloads/StudyBot/data/Courses/Comp%20474/Lectures/Lecture%203%20-%20Vocabularies%20%26%20Ontologies/Worksheets/worksheet02.pdf> .
 
 <http://focu.io/data#Voltaire> a focu:Topic ;
