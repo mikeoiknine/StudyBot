@@ -70,3 +70,31 @@ stories:
     - action: utter_greet
     - intent: courses_from_uni_covering_topic
     - action: action_courses_from_uni_covering_topic
+
+- story: get courses offered by uni
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: courses_offered_by_uni
+    - action: action_courses_offered_by_uni
+
+- story: get courses with labs
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: courses_with_labs
+    - action: action_courses_with_labs
+
+- story: get topics covered in course X lecture Y
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: topics_in_course_X_lecture_Y
+    - action: action_topics_in_course_X_lecture_Y
+
+- story: get courses with labs
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: courses_level_X_at_uni_Y
+    - action: action_courses_level_X_at_uni_Y

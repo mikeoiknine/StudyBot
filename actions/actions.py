@@ -166,3 +166,102 @@ class ActionCoursesFromUniCoveringTopic(Action):
     
         dispatcher.utter_message(text=message)
         return []
+
+class ActionCoursesOfferedByUni(Action):
+
+    def name(self) -> Text:
+        return "action_courses_offered_by_uni"
+
+    def run(self, dispatcher: CollectingDispatcher, 
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        university = tracker.slots['university']
+        if university is None:
+            dispatcher.utter_message(text=f"Sorry, I'm not sure I understand")
+            return []
+
+        courses = query.get_courses_offered_by_uni(graph, university)
+        if courses is None or not courses:
+            dispatcher.utter_message(text=f"Sorry, I can't seem to find any courses that don't have lecture slides")
+            return []
+
+        message = f"The following courses{'s' if len(courses) > 1 else ''} {'cover' if len(courses) > 1 else 'covers'} are offered by {university}:\n"
+        for course in courses:
+            courseuri = course
+            message += f"* {courseuri.split('#')[1]}, "
+    
+        dispatcher.utter_message(text=message)
+        return []
+
+class ActionCoursesWithLabs(Action):
+
+    def name(self) -> Text:
+        return "action_courses_with_labs"
+
+    def run(self, dispatcher: CollectingDispatcher, 
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        courses = query.get_courses_with_labs(graph)
+        if courses is None or not courses:
+            dispatcher.utter_message(text=f"Sorry, I can't seem to find any courses that don't have lecture slides")
+            return []
+
+        message = f"The following courses{'s' if len(courses) > 1 else ''} {'cover' if len(courses) > 1 else 'covers'} have labs:\n"
+        for course in courses:
+            courseuri = course
+            message += f"* {courseuri.split('#')[1]}, "
+    
+        dispatcher.utter_message(text=message)
+        return []
+
+class ActionTopicsCourseXLectureY(Action):
+
+    def name(self) -> Text:
+        return "action_topics_in_course_X_lecture_Y"
+
+    def run(self, dispatcher: CollectingDispatcher, 
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        course = tracker.slots['course']
+        lecture_number = tracker.slots['lec']
+
+        lecture_topics = query.get_topics_in_course_X_lecture_Y(graph, course, lecture_number)
+        if lecture_topics is None or not lecture_topics:
+            dispatcher.utter_message(text=f"Sorry, I can't seem to find any topics in this lecture of this course")
+            return []
+
+        message = f"The following topic{'s' if len(lecture_topics) > 1 else ''} {'cover' if len(lecture_topics) > 1 else 'covers'} in lecture {lecture_number} of course {course}:\n"
+        for lecture_topic in lecture_topics:
+            lectureuri, topicuri = lecture_topic
+            message += f"* {topicuri.split('#')[1]}, "
+    
+        dispatcher.utter_message(text=message)
+        return []
+
+class ActionCoursesLevelXUniY(Action):
+
+    def name(self) -> Text:
+        return "action_courses_level_X_at_uni_Y"
+
+    def run(self, dispatcher: CollectingDispatcher, 
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        level = tracker.slots['level']
+        university = tracker.slots['university']
+
+        courses = query.get_courses_level_X_at_uni_Y(graph, level, university)
+        if courses is None or not courses:
+            dispatcher.utter_message(text=f"Sorry, I can't seem to find any courses that for level {level} at {university}")
+            return []
+
+        message = f"The following courses{'s' if len(courses) > 1 else ''} {'cover' if len(courses) > 1 else 'covers'} are level {level} at {university}:\n"
+        for course in courses:
+            courseuri = course
+            message += f"* {courseuri.split('#')[1]}, "
+    
+        dispatcher.utter_message(text=message)
+        return []

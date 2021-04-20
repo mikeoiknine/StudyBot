@@ -155,13 +155,13 @@ def build_lecture_graph(lectures, course_name):
         # Add Labs associated to this lecture
         lab_ref = add_course_event_to_graph(g, course_name, lecture_number, "Lab",
                                             FOCU.Lab, raw_lecture.get("Labs", None))
-        if lab_ref is not None:
+        if lab_ref:
             g.add((lecture, FOCU.labs, lab_ref))
 
         # Add Tutorials associated to this lecture
         tut_ref = add_course_event_to_graph(g, course_name, lecture_number, "Tutorial",
                                             FOCU.Tutorial, raw_lecture.get("Tutorials", None))
-        if tut_ref is not None:
+        if tut_ref:
             g.add((lecture, FOCU.tutorials, tut_ref))
 
     return g
@@ -175,7 +175,11 @@ def add_course_event_to_graph(g, course_name, lecture_number, name, obj, paths):
     event_ref = URIRef(FOCUDATA + event_name)
     g.add((event_ref, RDF.type, obj))
 
-    add_uris_to_graph(g, event_ref, FOCU.worksheets, paths)
+    added_uris = add_uris_to_graph(g, event_ref, FOCU.worksheets, paths)
+    if not added_uris:
+        g.remove((event_ref, RDF.type, obj))
+        return None
+
     return event_ref
 
 
@@ -184,7 +188,7 @@ def add_uris_to_graph(g, subject, predicate, file_dicts):
     Converts all the given file_dicts to locally resolvable URIs and adds them
     as objects to the graph, g, with the given subject and predicate
     """
-    if file_dicts is None:
+    if file_dicts is None or not file_dicts:
         return []
 
     uris = []

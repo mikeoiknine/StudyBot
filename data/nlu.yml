@@ -179,6 +179,41 @@ nlu:
     - Which courses have no lecture slides?
     - Which courses don't have lecture slides?
 
+- intent: courses_offered_by_uni
+  examples: |
+    - Which courses are offered by [Concordia University](university)?
+    - Which courses are offered by [McMaster University](university)?
+    - Which courses are offered by [McGill University](university)?
+    - Which courses are offered by [University of Toronto](university)?
+    - Which courses are offered by [University of Waterloo](university)?
+
+- intent: courses_with_labs
+  examples: |
+    - Which courses have a laboratory component?
+    - Which courses have at least one lab?
+    - Which courses have a lab?
+    - Which courses have labs?
+
+- intent: courses_level_X_at_uni_Y
+  examples: |
+    - Which [400](level) courses are offered at [Concordia University](university)?
+    - Which [100](level) courses are offered at [Concordia University](university)?
+    - Which [300](level) courses are offered at [Concordia University](university)?
+    - Which [200](level) courses are offered at [Concordia University](university)?
+    - Which [400](level) courses are offered at [McGill University](university)?
+    - Which [300](level) courses are offered at [McMaster University](university)?
+    - Which [200](level) courses are offered at [University of Toronto](university)?
+    - Which [100](level) courses are offered at [University of Waterloo](university)?
+
+- intent: topics_in_course_X_lecture_Y
+  examples: |
+    -Which topics are covered in [COMP 474](course) lecture [5](lec)?
+    -Which topics were covered in [COMP 474](course) lecture [3](lec)?
+    -Which topics are covered in [COMP 445](course) lecture [2](lec)?
+    -Which topics are covered in [Coen 445](course) lecture [11](lec)?
+    -Which topics were covered in [acco 465](course) lecture [4](lec)?
+    -Which topics were covered in [engr 371](course) lecture [8](lec)?
+
 - intent: courses_from_uni_covering_topic
   examples: |
     - Which courses from [Concordia University](university) cover the topic [Mathematics](topic)?

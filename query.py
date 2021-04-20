@@ -291,3 +291,161 @@ def courses_from_uni_covering_topic(graph, topicname, university):
         if course is not None:
             courses.append((str(course), coursesubject, coursenumber, coursename))
     return courses
+
+def get_courses_offered_by_uni(graph, university):
+    """
+    Query the graph for courses offered by given university
+    """
+
+    print(university)
+ 
+    q = prepareQuery(
+        """SELECT DISTINCT ?course
+            WHERE {
+                ?course a vivo:Course.
+                ?uni focu:courses ?course;
+                    dbp:name ?uniname
+            }
+            """,
+        initNs = {
+            "vivo": VIVO,
+            "focu": FOCU,
+            "dbp": DBP
+        }
+    )
+    
+    rows = list(graph.query(q, initBindings={ "uniname": Literal(university.lower()) }))
+    if rows is None or not rows:
+        return None 
+
+    courses = []
+    for row in rows:
+        course = row.get("course", None)
+        if course is not None:
+            courses.append((str(course)))
+    return courses
+
+def get_courses_with_labs(graph):
+    """
+    Query the graph for courses with a lab component
+    """
+
+    q = prepareQuery(
+        """SELECT DISTINCT ?course
+            WHERE {
+                ?course rdf:type vivo:Course;
+                        focu:lectures ?lecture .
+                ?lecture focu:labs ?lab .
+            }
+            """,
+        initNs = {
+            "vivo": VIVO,
+            "focu": FOCU,
+            "rdf": RDF
+        }
+    )
+    
+    rows = list(graph.query(q))
+    if rows is None or not rows:
+        return None 
+
+    courses = []
+    for row in rows:
+        course = row.get("course", None)
+        if course is not None:
+            courses.append((str(course)))
+    return courses
+
+def get_topics_in_course_X_lecture_Y(graph, course, lecture_number):
+    """
+    Query the graph for courses with a lab component
+    """
+
+    coursesubject, coursenumber = course.split(" ")
+    coursesubject = coursesubject.upper()
+    print(coursesubject)
+    print(coursenumber)
+    print(lecture_number)
+
+    q = prepareQuery(
+        """ SELECT ?lecture ?topic 
+            WHERE {
+            ?s rdf:type vivo:Course;
+                dce:subject ?coursesubject;
+                dbp:number ?coursenumber;
+                focu:lectures ?lecture .
+                {
+                    ?lecture dbp:number ?lecturenumber;
+                            focu:topics ?topic .
+                } UNION
+                {
+                    ?lecture focu:slides ?slides.
+                    ?slides focu:topics ?topic .
+                }
+
+            }
+            """,
+        initNs = {
+            "vivo": VIVO,
+            "focu": FOCU,
+            "rdf": RDF,
+            "dce": DCE,
+            "dbp": DBP
+        }
+    )
+    
+    rows = list(graph.query(q, initBindings={"coursesubject": Literal(coursesubject), "coursenumber": Literal(coursenumber), "lecturenumber": Literal(lecture_number)}))
+    if rows is None or not rows:
+        return None 
+
+    lecturetopics = []
+    for row in rows:
+        lecture = row.get("lecture", None)
+        topic = row.get("topic", None)
+        if lecture is not None and topic is not None:
+            lecturetopics.append((str(lecture), str(topic)))
+    return lecturetopics
+
+def get_courses_level_X_at_uni_Y(graph, level, university):
+    """
+    Query the graph for courses with a lab component
+    """
+
+    print(level)
+    print(university)
+
+    level_number = level[0]
+
+    q = prepareQuery(
+        """
+        SELECT ?course
+            WHERE {{
+                ?uni a dbo:University;
+                    dbp:name ?uniname;
+                    focu:courses ?course.
+                ?course dbp:number ?courseNumber .
+                FILTER(STRSTARTS(?courseNumber, "{levelnumber}")) .
+            }}
+            """.format(levelnumber = level_number),
+        initNs = {
+            "vivo": VIVO,
+            "focu": FOCU,
+            "rdf": RDF,
+            "dbp": DBP,
+            "dbo": DBO
+        }
+    )
+    
+    rows = list(graph.query(q, initBindings={
+        "uniname": Literal(university)
+    }))
+
+    if rows is None or not rows:
+        return None 
+
+    courses = []
+    for row in rows:
+        course = row.get("course", None)
+        if course is not None:
+            courses.append((str(course)))
+    return courses
