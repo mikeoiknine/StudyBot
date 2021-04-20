@@ -70,3 +70,10 @@ stories:
     - action: utter_greet
     - intent: courses_from_uni_covering_topic
     - action: action_courses_from_uni_covering_topic
+
+- story: count course event
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: count_course_event
+    - action: action_course_event_count

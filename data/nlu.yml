@@ -201,3 +201,10 @@ nlu:
     - Which courses cover the topic [Mathematics](topic) from [McGill University](university)?
     - Which courses cover [Mathematics](topic) from [McMaster University](university)?
     - Which courses cover the topic [Mathematics](topic) at [Concordia University](university) ?
+
+- intent: count_course_event
+  examples: |
+    - How many [lectures](event_type) are there in [comp 445](course)?
+    - How many [labs](event_type) are there in [Acco 265](course)?
+    - Are there a lot of [tutorials](event_type) in [__oov__](course)
+    - Are there a lot of [__oov__](event_type) in [__oov__](course)?

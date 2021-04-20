@@ -10,10 +10,14 @@ intents:
   - bot_challenge
   - about_course
   - about_course_topic
+<<<<<<< Updated upstream
   - topic_which_course
   - topic_which_slides
   - courses_no_lecture_slides
   - courses_from_uni_covering_topic
+=======
+  - count_course_event
+>>>>>>> Stashed changes
 
 responses:
   utter_greet:
@@ -46,12 +50,14 @@ actions:
   - action_topic_which_slides
   - action_courses_no_lecture_slides
   - action_courses_from_uni_covering_topic
+  - action_course_event_count
 
 entities:
   - course
   - topic
   - university
-
+  - event_type
+  
 slots:
   course:
     type: any
@@ -60,3 +66,6 @@ slots:
     type: text
   university:
     type: text
+  event_type:
+    type: any
+    initial_value: "lectures"

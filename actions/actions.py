@@ -14,6 +14,7 @@ from main import fetch_or_build_graph
 
 graph = fetch_or_build_graph()
 
+
 class ActionCourseInfo(Action):
 
     def name(self) -> Text:
@@ -32,7 +33,7 @@ class ActionCourseInfo(Action):
         if course_description is None or course_name is None:
             dispatcher.utter_message(text=f"Sorry, I can't seem to find a description for {course}")
             return []
-        
+
         dispatcher.utter_message(text=f"Here's what I found about {course} - {course_name}:\n{course_description}")
         return []
 
@@ -42,15 +43,15 @@ class ActionCourseTopicsCovered(Action):
     def name(self) -> Text:
         return "action_course_topics_covered"
 
-    def run(self, dispatcher: CollectingDispatcher, 
+    def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
+
         course = tracker.slots['course']
         if course is None:
             dispatcher.utter_message(text=f"Sorry, I'm not sure I understand")
             return []
-        
+
         topics = query.get_course_topics(graph, course)
         if topics is None or not topics:
             dispatcher.utter_message(text=f"Sorry, I can't seem to find any topics covered in {course}")
@@ -60,24 +61,25 @@ class ActionCourseTopicsCovered(Action):
         for topic in topics:
             t, link = topic
             message += f"* {t.split('#')[1]} - ({link})\n"
-    
+
         dispatcher.utter_message(text=message)
         return []
+
 
 class ActionTopicsCoveredInCourse(Action):
 
     def name(self) -> Text:
         return "action_topic_which_courses"
 
-    def run(self, dispatcher: CollectingDispatcher, 
+    def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
+
         topic = tracker.slots['topic']
         if topic is None:
             dispatcher.utter_message(text=f"Sorry, I'm not sure I understand")
             return []
-        
+
         courses = query.get_courses_covering_topic(graph, topic)
         if courses is None or not courses:
             dispatcher.utter_message(text=f"Sorry, I can't seem to find any courses that cover {topic}")
@@ -87,24 +89,25 @@ class ActionTopicsCoveredInCourse(Action):
         for course in courses:
             courseuri, coursesubject, coursenumber, coursename, doccount = course
             message += f"* {courseuri.split('#')[1]} - {coursesubject} {coursenumber} {coursename} COUNT: {doccount}\n"
-    
+
         dispatcher.utter_message(text=message)
         return []
+
 
 class ActionTopicsCoveredInSlides(Action):
 
     def name(self) -> Text:
         return "action_topic_which_slides"
 
-    def run(self, dispatcher: CollectingDispatcher, 
+    def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
+
         topic = tracker.slots['topic']
         if topic is None:
             dispatcher.utter_message(text=f"Sorry, I'm not sure I understand")
             return []
-        
+
         slides = query.slides_for_lectures_covering_topic(graph, topic)
         if slides is None or not slides:
             dispatcher.utter_message(text=f"Sorry, I can't seem to find any slides that cover {topic}")
@@ -113,19 +116,20 @@ class ActionTopicsCoveredInSlides(Action):
         message = f"The following slides{'s' if len(slides) > 1 else ''} {'cover' if len(slides) > 1 else 'covers'} the topic {topic}:\n"
         for slide in slides:
             message += f"* {slide}\n"
-    
+
         dispatcher.utter_message(text=message)
         return []
+
 
 class ActionCoursesNoLectureSlides(Action):
 
     def name(self) -> Text:
         return "action_courses_no_lecture_slides"
 
-    def run(self, dispatcher: CollectingDispatcher, 
+    def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
+
         courses = query.get_courses_no_lecture_slides(graph)
         if courses is None or not courses:
             dispatcher.utter_message(text=f"Sorry, I can't seem to find any courses that don't have lecture slides")
@@ -135,25 +139,26 @@ class ActionCoursesNoLectureSlides(Action):
         for course in courses:
             courseuri = course
             message += f"* {courseuri.split('#')[1]}, "
-    
+
         dispatcher.utter_message(text=message)
         return []
+
 
 class ActionCoursesFromUniCoveringTopic(Action):
 
     def name(self) -> Text:
         return "action_courses_from_uni_covering_topic"
 
-    def run(self, dispatcher: CollectingDispatcher, 
+    def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
+
         topic = tracker.slots['topic']
         university = tracker.slots['university']
         if topic is None or university is None:
             dispatcher.utter_message(text=f"Sorry, I'm not sure I understand")
             return []
-        
+
         courses = query.courses_from_uni_covering_topic(graph, topic, university)
         if courses is None or not courses:
             dispatcher.utter_message(text=f"Sorry, I can't seem to find any courses that cover {topic} at {university}")
@@ -163,6 +168,42 @@ class ActionCoursesFromUniCoveringTopic(Action):
         for course in courses:
             courseuri, coursesubject, coursenumber, coursename = course
             message += f"* {courseuri.split('#')[1]} - {coursesubject} {coursenumber} {coursename}\n"
-    
+
+        dispatcher.utter_message(text=message)
+        return []
+
+
+class ActionCourseEventCount(Action):
+
+    def name(self) -> Text:
+        return "action_course_event_count"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        course = tracker.slots['course']
+        event_type = tracker.slots['event_type']
+        if course is None or event_type is None:
+            dispatcher.utter_message(text=f"Sorry, I'm not sure I understand")
+            return []
+
+        event_type = event_type.lower().strip()
+        if event_type in set(['lectures', 'lecture', 'lec', 'lecs']):
+            count = query.get_lecture_count(graph, course)
+        elif event_type in set(['labs', 'lab', 'laboratories', 'laboratory']):
+            count = query.get_lab_count(graph, course)
+        elif event_type in set(['tutorials', 'tutorial', 'tut', 'tuts']):
+            count = query.get_tutorial_count(graph, course)
+
+        if count is None:
+            dispatcher.utter_message(text=f"Sorry, I can't seem to find any topics covered in {course}")
+            return []
+
+        message = f"The topic{'s' if len(topics) > 1 else ''} covered by {course} {'are' if len(topics) > 1 else 'is'}:\n"
+        for topic in topics:
+            t, link = topic
+            message += f"* {t.split('#')[1]} - ({link})\n"
+
         dispatcher.utter_message(text=message)
         return []

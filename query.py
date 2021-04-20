@@ -10,14 +10,15 @@ VIVO = Namespace("http://vivoweb.org/ontology/core#")
 RDFS = Namespace("http://www.w3.org/2000/01/rdf-schema#")
 RDF = Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
 
+
 def get_course_description(graph, course):
     """
     Query the graph for the name and description the course
     """
-    
+
     q = prepareQuery(
         "SELECT ?name ?description WHERE { ?course a vivo:Course; dbp:name ?name; dce:description ?description. }",
-        initNs = {
+        initNs={
             "focudata": FOCUDATA,
             "vivo": VIVO,
             "dbp": DBP,
@@ -28,14 +29,15 @@ def get_course_description(graph, course):
     course = URIRef(FOCUDATA + f"{'_'.join(course.split()).upper()}")
     rows = list(graph.query(q, initBindings={"course": course}))
     if rows is None or not rows:
-        return None 
+        return None
 
     course_descr = rows[0].get("description", None)
     course_name = rows[0].get("name", None)
     if course_descr is None or course_name is None:
-        return None 
+        return None
 
     return str(course_name), str(course_descr)
+
 
 def get_lecture_count(graph, course):
     """
@@ -44,7 +46,7 @@ def get_lecture_count(graph, course):
 
     q = prepareQuery(
         "SELECT (COUNT(?lecture) as ?lecture_cnt) WHERE { ?course focu:lectures ?lecture. }",
-        initNs = {
+        initNs={
             "focudata": FOCUDATA,
             "focu": FOCU
         }
@@ -53,11 +55,55 @@ def get_lecture_count(graph, course):
     course = URIRef(FOCUDATA + f"{'_'.join(course.split()).upper()}")
     rows = list(graph.query(q, initBindings={"course": course}))
     if rows is None or not rows:
-        return None 
+        return None
 
     lecture_count = rows[0].get("lecture_cnt", None)
     return lecture_count
-    
+
+
+def get_lab_count(graph, course):
+    """
+    Return the amount of labs associated with the given course in the graph
+    """
+
+    q = prepareQuery(
+        "SELECT (COUNT(?labs) as ?lab_cnt) WHERE { ?course focu:lectures ?lectures. OPTIONAL { ?lectures focu:labs ?labs }. }",
+        initNs={
+            "focudata": FOCUDATA,
+            "focu": FOCU
+        }
+    )
+
+    course = URIRef(FOCUDATA + f"{'_'.join(course.split()).upper()}")
+    rows = list(graph.query(q, initBindings={"course": course}))
+    if rows is None or not rows:
+        return None
+
+    lab_count = rows[0].get("lab_cnt", None)
+    return lab_count
+
+
+def get_tutorial_count(graph, course):
+    """
+    Return the amount of tutorials associated with the given course in the graph
+    """
+
+    q = prepareQuery(
+        "SELECT (COUNT(?tutorials) as ?tutorial_cnt) WHERE { ?course focu:lectures ?lectures. OPTIONAL { ?lectures focu:tutorials ?tutorials }. }",
+        initNs={
+            "focudata": FOCUDATA,
+            "focu": FOCU
+        }
+    )
+
+    course = URIRef(FOCUDATA + f"{'_'.join(course.split()).upper()}")
+    rows = list(graph.query(q, initBindings={"course": course}))
+    if rows is None or not rows:
+        return None
+
+    tutorial_count = rows[0].get("tutorial_cnt", None)
+    return tutorial_count
+
 
 def get_course_topics(graph, course):
     """
@@ -66,7 +112,7 @@ def get_course_topics(graph, course):
 
     q = prepareQuery(
         "SELECT ?topics ?urls WHERE { ?course a vivo:Course; focu:topics ?topics. ?topics rdfs:seeAlso ?urls.}",
-        initNs = {
+        initNs={
             "focudata": FOCUDATA,
             "vivo": VIVO,
             "focu": FOCU,
@@ -77,7 +123,7 @@ def get_course_topics(graph, course):
     course = URIRef(FOCUDATA + f"{'_'.join(course.split()).upper()}")
     rows = list(graph.query(q, initBindings={"course": course}))
     if rows is None or not rows:
-        return None 
+        return None
 
     topics = []
     for row in rows:
@@ -86,6 +132,7 @@ def get_course_topics(graph, course):
         if topic is not None and link is not None:
             topics.append((str(topic), link))
     return topics
+
 
 def get_courses_covering_topic(graph, topicname):
     """
@@ -143,7 +190,7 @@ def get_courses_covering_topic(graph, topicname):
             ORDER BY DESC(?doccount)
 
         """,
-        initNs = {
+        initNs={
             "focudata": FOCUDATA,
             "vivo": VIVO,
             "focu": FOCU,
@@ -156,7 +203,7 @@ def get_courses_covering_topic(graph, topicname):
     rows = list(graph.query(q, initBindings={"topicname": Literal(topicname.lower())}))
     print(rows)
     if rows is None or not rows:
-        return None 
+        return None
 
     courses = []
     for row in rows:
@@ -169,6 +216,7 @@ def get_courses_covering_topic(graph, topicname):
         if course is not None:
             courses.append((str(course), coursesubject, coursenumber, coursename, doccount))
     return courses
+
 
 def slides_for_lectures_covering_topic(graph, topicname):
     """
@@ -185,16 +233,16 @@ def slides_for_lectures_covering_topic(graph, topicname):
                 ?slides focu:topics ?topic.
                 ?topic dbp:name ?topicname .
             }""",
-        initNs = {
+        initNs={
             "focu": FOCU,
             "rdf": RDF,
             "dbp": DBP
         }
     )
-    
+
     rows = list(graph.query(q, initBindings={"topicname": Literal(topicname.lower())}))
     if rows is None or not rows:
-        return None 
+        return None
 
     slidesets = []
     for row in rows:
@@ -203,11 +251,12 @@ def slides_for_lectures_covering_topic(graph, topicname):
             slidesets.append((str(slides)))
     return slidesets
 
+
 def get_courses_no_lecture_slides(graph):
     """
     Query the graph for lectures without lecture slides
     """
- 
+
     q = prepareQuery(
         """SELECT DISTINCT ?course
             WHERE {
@@ -219,17 +268,17 @@ def get_courses_no_lecture_slides(graph):
             FILTER (!BOUND(?slides))
             }
             """,
-        initNs = {
+        initNs={
             "vivo": VIVO,
             "focu": FOCU,
             "rdf": RDF,
             "dbp": DBP
         }
     )
-    
+
     rows = list(graph.query(q))
     if rows is None or not rows:
-        return None 
+        return None
 
     courses = []
     for row in rows:
@@ -237,6 +286,7 @@ def get_courses_no_lecture_slides(graph):
         if course is not None:
             courses.append((str(course)))
     return courses
+
 
 def courses_from_uni_covering_topic(graph, topicname, university):
     """
@@ -261,8 +311,8 @@ def courses_from_uni_covering_topic(graph, topicname, university):
                     focu:courses ?course.
              }}
             GROUP BY ?course ?coursesubject ?coursenumber ?coursename
-        """.format(uniname= university, topic_name= topicname),
-        initNs = {
+        """.format(uniname=university, topic_name=topicname),
+        initNs={
             "focu": FOCU,
             "rdf": RDF,
             "dbp": DBP,
@@ -271,15 +321,14 @@ def courses_from_uni_covering_topic(graph, topicname, university):
             "dce": DCE
         }
     )
-    
+
     rows = list(graph.query(q, initBindings={
-        "topicname": Literal(topicname.lower()), 
+        "topicname": Literal(topicname.lower()),
         "uniname": Literal(university.lower())
-        }))
+    }))
     print(list(rows))
     if rows is None or not rows:
-        return None 
-
+        return None
 
     courses = []
     for row in rows:
