@@ -291,3 +291,36 @@ def courses_from_uni_covering_topic(graph, topicname, university):
         if course is not None:
             courses.append((str(course), coursesubject, coursenumber, coursename))
     return courses
+
+def get_courses_offered_by_uni(graph, university):
+    """
+    Query the graph for courses offered by given university
+    """
+
+    print(university)
+ 
+    q = prepareQuery(
+        """SELECT DISTINCT ?course
+            WHERE {
+                ?course a vivo:Course.
+                ?uni focu:courses ?course;
+                    dbp:name ?uniname
+            }
+            """,
+        initNs = {
+            "vivo": VIVO,
+            "focu": FOCU,
+            "dbp": DBP
+        }
+    )
+    
+    rows = list(graph.query(q, initBindings={ "uniname": Literal(university.lower()) }))
+    if rows is None or not rows:
+        return None 
+
+    courses = []
+    for row in rows:
+        course = row.get("course", None)
+        if course is not None:
+            courses.append((str(course)))
+    return courses

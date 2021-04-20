@@ -13,7 +13,7 @@ def generate_graph():
 
 def fetch_or_build_graph():
     graph = Graph()
-    graph.parse("Graph.nt", format="ntriples")
+    graph.parse("Graph.ttl", format="ttl")
 
     if graph is None:
         graph = generate_graph()

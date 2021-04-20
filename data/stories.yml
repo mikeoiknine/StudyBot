@@ -70,3 +70,10 @@ stories:
     - action: utter_greet
     - intent: courses_from_uni_covering_topic
     - action: action_courses_from_uni_covering_topic
+
+- story: get courses offered by uni
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: courses_offered_by_uni
+    - action: action_courses_offered_by_uni

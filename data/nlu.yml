@@ -179,6 +179,14 @@ nlu:
     - Which courses have no lecture slides?
     - Which courses don't have lecture slides?
 
+- intent: courses_offered_by_uni
+  examples: |
+    - Which courses are offered by [Concordia University](university)?
+    - Which courses are offered by [McMaster University](university)?
+    - Which courses are offered by [McGill University](university)?
+    - Which courses are offered by [University of Toronto](university)?
+    - Which courses are offered by [University of Waterloo](university)?
+
 - intent: courses_from_uni_covering_topic
   examples: |
     - Which courses from [Concordia University](university) cover the topic [Mathematics](topic)?
