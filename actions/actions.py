@@ -219,24 +219,25 @@ class ActionCoursesWithLabs(Action):
 class ActionTopicsCourseXLectureY(Action):
 
     def name(self) -> Text:
-        return "action_topics_in_course_X_lecture_Y"
+        return "action_topics_in_course_X_eventtype_Y_event_Z"
 
     def run(self, dispatcher: CollectingDispatcher, 
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         course = tracker.slots['course']
+        event_type = tracker.slots['event']
         lecture_number = tracker.slots['lec']
 
-        lecture_topics = query.get_topics_in_course_X_lecture_Y(graph, course, lecture_number)
+        lecture_topics = query.get_topics_in_course_X_eventtype_Y_event_Z(graph, course, event_type, lecture_number)
         if lecture_topics is None or not lecture_topics:
-            dispatcher.utter_message(text=f"Sorry, I can't seem to find any topics in this lecture of this course")
+            dispatcher.utter_message(text=f"Sorry, I can't seem to find any topics in {event_type} {lecture_number} of course {course}")
             return []
 
-        message = f"The following topic{'s' if len(lecture_topics) > 1 else ''} {'cover' if len(lecture_topics) > 1 else 'covers'} in lecture {lecture_number} of course {course}:\n"
+        message = f"The following topic{'s' if len(lecture_topics) > 1 else ''} {'cover' if len(lecture_topics) > 1 else 'covers'} in {event_type} {lecture_number} of course {course}:\n"
         for lecture_topic in lecture_topics:
-            lectureuri, topicuri = lecture_topic
-            message += f"* {topicuri.split('#')[1]}, "
+            lectureuri, topicuri, resourceuri = lecture_topic
+            message += f"* {topicuri.split('#')[1]}, {resourceuri}, {lectureuri.split('#')[1]} \n"
     
         dispatcher.utter_message(text=message)
         return []
