@@ -15,6 +15,7 @@ intents:
   - courses_no_lecture_slides
   - courses_from_uni_covering_topic
   - courses_offered_by_uni
+  - courses_with_labs
 
 responses:
   utter_greet:
@@ -48,6 +49,7 @@ actions:
   - action_courses_no_lecture_slides
   - action_courses_from_uni_covering_topic
   - action_courses_offered_by_uni
+  - action_courses_with_labs
 
 entities:
   - course

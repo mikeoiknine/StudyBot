@@ -324,3 +324,34 @@ def get_courses_offered_by_uni(graph, university):
         if course is not None:
             courses.append((str(course)))
     return courses
+
+def get_courses_with_labs(graph):
+    """
+    Query the graph for courses with a lab component
+    """
+
+    q = prepareQuery(
+        """SELECT DISTINCT ?course
+            WHERE {
+                ?course rdf:type vivo:Course;
+                        focu:lectures ?lecture .
+                ?lecture focu:labs ?lab .
+            }
+            """,
+        initNs = {
+            "vivo": VIVO,
+            "focu": FOCU,
+            "rdf": RDF
+        }
+    )
+    
+    rows = list(graph.query(q))
+    if rows is None or not rows:
+        return None 
+
+    courses = []
+    for row in rows:
+        course = row.get("course", None)
+        if course is not None:
+            courses.append((str(course)))
+    return courses

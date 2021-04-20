@@ -77,3 +77,10 @@ stories:
     - action: utter_greet
     - intent: courses_offered_by_uni
     - action: action_courses_offered_by_uni
+
+- story: get courses with labs
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: courses_with_labs
+    - action: action_courses_with_labs

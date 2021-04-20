@@ -187,6 +187,13 @@ nlu:
     - Which courses are offered by [University of Toronto](university)?
     - Which courses are offered by [University of Waterloo](university)?
 
+- intent: courses_with_labs
+  examples: |
+    - Which courses have a laboratory component?
+    - Which courses have at least one lab?
+    - Which courses have a lab?
+    - Which courses have labs?
+
 - intent: courses_from_uni_covering_topic
   examples: |
     - Which courses from [Concordia University](university) cover the topic [Mathematics](topic)?

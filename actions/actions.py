@@ -186,7 +186,29 @@ class ActionCoursesOfferedByUni(Action):
             dispatcher.utter_message(text=f"Sorry, I can't seem to find any courses that don't have lecture slides")
             return []
 
-        message = f"The following courses{'s' if len(courses) > 1 else ''} {'cover' if len(courses) > 1 else 'covers'} have no lecture slides:\n"
+        message = f"The following courses{'s' if len(courses) > 1 else ''} {'cover' if len(courses) > 1 else 'covers'} are offered by {university}:\n"
+        for course in courses:
+            courseuri = course
+            message += f"* {courseuri.split('#')[1]}, "
+    
+        dispatcher.utter_message(text=message)
+        return []
+
+class ActionCoursesWithLabs(Action):
+
+    def name(self) -> Text:
+        return "action_courses_with_labs"
+
+    def run(self, dispatcher: CollectingDispatcher, 
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        courses = query.get_courses_with_labs(graph)
+        if courses is None or not courses:
+            dispatcher.utter_message(text=f"Sorry, I can't seem to find any courses that don't have lecture slides")
+            return []
+
+        message = f"The following courses{'s' if len(courses) > 1 else ''} {'cover' if len(courses) > 1 else 'covers'} have labs:\n"
         for course in courses:
             courseuri = course
             message += f"* {courseuri.split('#')[1]}, "
