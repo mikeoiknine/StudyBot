@@ -16,6 +16,7 @@ intents:
   - courses_from_uni_covering_topic
   - courses_offered_by_uni
   - courses_with_labs
+  - courses_level_X_at_uni_Y
 
 responses:
   utter_greet:
@@ -50,12 +51,15 @@ actions:
   - action_courses_from_uni_covering_topic
   - action_courses_offered_by_uni
   - action_courses_with_labs
+  - action_courses_level_X_at_uni_Y
   - action_topics_in_course_X_lecture_Y
 
 entities:
   - course
   - topic
   - university
+  - lec
+  - level
 
 slots:
   course:
@@ -66,4 +70,6 @@ slots:
   university:
     type: text
   lec:
+    type: any
+  level:
     type: any

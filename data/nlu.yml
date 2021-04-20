@@ -194,6 +194,17 @@ nlu:
     - Which courses have a lab?
     - Which courses have labs?
 
+- intent: courses_level_X_at_uni_Y
+  examples: |
+    - Which [400](level) courses are offered at [Concordia University](university)?
+    - Which [100](level) courses are offered at [Concordia University](university)?
+    - Which [300](level) courses are offered at [Concordia University](university)?
+    - Which [200](level) courses are offered at [Concordia University](university)?
+    - Which [400](level) courses are offered at [McGill University](university)?
+    - Which [300](level) courses are offered at [McMaster University](university)?
+    - Which [200](level) courses are offered at [University of Toronto](university)?
+    - Which [100](level) courses are offered at [University of Waterloo](university)?
+
 - intent: topics_in_course_X_lecture_Y
   examples: |
     -Which topics are covered in [COMP 474](course) lecture [5](lec)?

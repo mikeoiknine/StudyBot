@@ -240,3 +240,28 @@ class ActionTopicsCourseXLectureY(Action):
     
         dispatcher.utter_message(text=message)
         return []
+
+class ActionCoursesLevelXUniY(Action):
+
+    def name(self) -> Text:
+        return "action_courses_level_X_at_uni_Y"
+
+    def run(self, dispatcher: CollectingDispatcher, 
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        level = tracker.slots['level']
+        university = tracker.slots['university']
+
+        courses = query.get_courses_level_X_at_uni_Y(graph, level, university)
+        if courses is None or not courses:
+            dispatcher.utter_message(text=f"Sorry, I can't seem to find any courses that for level {level} at {university}")
+            return []
+
+        message = f"The following courses{'s' if len(courses) > 1 else ''} {'cover' if len(courses) > 1 else 'covers'} are level {level} at {university}:\n"
+        for course in courses:
+            courseuri = course
+            message += f"* {courseuri.split('#')[1]}, "
+    
+        dispatcher.utter_message(text=message)
+        return []

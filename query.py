@@ -405,3 +405,47 @@ def get_topics_in_course_X_lecture_Y(graph, course, lecture_number):
         if lecture is not None and topic is not None:
             lecturetopics.append((str(lecture), str(topic)))
     return lecturetopics
+
+def get_courses_level_X_at_uni_Y(graph, level, university):
+    """
+    Query the graph for courses with a lab component
+    """
+
+    print(level)
+    print(university)
+
+    level_number = level[0]
+
+    q = prepareQuery(
+        """
+        SELECT ?course
+            WHERE {{
+                ?uni a dbo:University;
+                    dbp:name ?uniname;
+                    focu:courses ?course.
+                ?course dbp:number ?courseNumber .
+                FILTER(STRSTARTS(?courseNumber, "{levelnumber}")) .
+            }}
+            """.format(levelnumber = level_number),
+        initNs = {
+            "vivo": VIVO,
+            "focu": FOCU,
+            "rdf": RDF,
+            "dbp": DBP,
+            "dbo": DBO
+        }
+    )
+    
+    rows = list(graph.query(q, initBindings={
+        "uniname": Literal(university)
+    }))
+
+    if rows is None or not rows:
+        return None 
+
+    courses = []
+    for row in rows:
+        course = row.get("course", None)
+        if course is not None:
+            courses.append((str(course)))
+    return courses
