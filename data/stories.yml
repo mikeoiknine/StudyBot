@@ -49,3 +49,24 @@ stories:
     - action: utter_greet
     - intent: topic_which_course
     - action: action_topic_which_courses
+
+- story: get slides covering topic
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: topic_which_slides
+    - action: action_topic_which_slides
+
+- story: get courses no lecture slides
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: courses_no_lecture_slides
+    - action: action_courses_no_lecture_slides
+
+- story: get courses from university covering topic
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: courses_from_uni_covering_topic
+    - action: action_courses_from_uni_covering_topic
