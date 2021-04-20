@@ -197,7 +197,7 @@ def add_uris_to_graph(g, subject, predicate, file_dicts):
             topicName = annotation['@URI'].replace(dbr, '') # get name from dbpedia resource
             topicURI = URIRef(FOCUDATA + topicName)
             g.add((topicURI, RDF.type, FOCU.Topic))
-            g.add((topicURI, DBP.name, Literal(annotation['@surfaceForm'])))
+            g.add((topicURI, DBP.name, Literal(annotation['@surfaceForm'].lower())))
             g.add((topicURI, RDFS.seeAlso, URIRef(annotation['@URI'])))
             g.add((docURI, FOCU.topics, topicURI))
 
