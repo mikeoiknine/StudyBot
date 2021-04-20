@@ -98,3 +98,10 @@ stories:
     - action: utter_greet
     - intent: courses_level_X_at_uni_Y
     - action: action_courses_level_X_at_uni_Y
+
+- story: count course event
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: count_course_event
+    - action: action_course_event_count 

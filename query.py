@@ -370,9 +370,9 @@ def get_topics_in_course_X_eventtype_Y_event_Z(graph, course, eventtype, lecture
     print(lecture_number)
 
     rdf_eventtype = ""
-    if eventtype == "lecture": rdf_eventtype = "focu:Lecture"
-    if eventtype == "tutorial": rdf_eventtype = "focu:Tutorial"
-    if eventtype == "lab": rdf_eventtype = "focu:Lab"
+    if eventtype == "lecture" or eventtype == "Lecture": rdf_eventtype = "focu:Lecture"
+    if eventtype == "tutorial" or eventtype == "Tutorial": rdf_eventtype = "focu:Tutorial"
+    if eventtype == "lab" or eventtype == "laboratory"  or eventtype == "Lab"  or eventtype == "Laboratory": rdf_eventtype = "focu:Lab"
 
     q = prepareQuery(
         """ SELECT ?lecture ?topic ?docs
@@ -493,3 +493,46 @@ def get_courses_level_X_at_uni_Y(graph, level, university):
         if course is not None:
             courses.append((str(course)))
     return courses
+
+def get_lab_count(graph, course):
+    """
+    Return the amount of labs associated with the given course in the graph
+    """
+
+    q = prepareQuery(
+        "SELECT (COUNT(?labs) as ?lab_cnt) WHERE { ?course focu:lectures ?lectures. OPTIONAL { ?lectures focu:labs ?labs }. }",
+        initNs={
+            "focudata": FOCUDATA,
+            "focu": FOCU
+        }
+    )
+
+    course = URIRef(FOCUDATA + f"{'_'.join(course.split()).upper()}")
+    rows = list(graph.query(q, initBindings={"course": course}))
+    if rows is None or not rows:
+        return None
+
+    lab_count = rows[0].get("lab_cnt", None)
+    return lab_count
+
+
+def get_tutorial_count(graph, course):
+    """
+    Return the amount of tutorials associated with the given course in the graph
+    """
+
+    q = prepareQuery(
+        "SELECT (COUNT(?tutorials) as ?tutorial_cnt) WHERE { ?course focu:lectures ?lectures. OPTIONAL { ?lectures focu:tutorials ?tutorials }. }",
+        initNs={
+            "focudata": FOCUDATA,
+            "focu": FOCU
+        }
+    )
+
+    course = URIRef(FOCUDATA + f"{'_'.join(course.split()).upper()}")
+    rows = list(graph.query(q, initBindings={"course": course}))
+    if rows is None or not rows:
+        return None
+
+    tutorial_count = rows[0].get("tutorial_cnt", None)
+    return tutorial_count

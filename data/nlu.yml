@@ -207,32 +207,32 @@ nlu:
 
 - intent: topics_in_course_X_eventtype_Y_event_Z
   examples: |
-    - Which topics are covered in [lecture](event) [5](lec) of [COMP 474](course) ?
-    - Which topics are covered in [lecture](event) [5](lec) of [comp 474](course) ?
-    - Which topics are covered in [lecture](event) [5](lec) of [comp 445](course) ?
-    - Which topics were covered in [Lecture](event) [3](lec) of [COMP 474](course) ?
-    - Which topics are covered in [lecture](event) [2](lec) of [COMP 445](course) ?
-    - Which topics are covered in [Lecture](event) [11](lec) of [Coen 445](course) ?
-    - Which topics were covered in [lecture](event) [4](lec) of [acco 465](course) ?
-    - Which topics were covered in [lecture](event) [8](lec) of [engr 371](course) ?
-    - which topics are covered in [Lecture](event) [2](lec) of [COMP 474](course) ?
-    - which topics are covered in [Lecture](event) [1](lec) of [ENGR 371](course) ?
+    - Which topics are covered in [lecture](event_type) [5](lec) of [COMP 474](course) ?
+    - Which topics are covered in [lecture](event_type) [5](lec) of [comp 474](course) ?
+    - Which topics are covered in [lecture](event_type) [5](lec) of [comp 445](course) ?
+    - Which topics were covered in [Lecture](event_type) [3](lec) of [COMP 474](course) ?
+    - Which topics are covered in [lecture](event_type) [2](lec) of [COMP 445](course) ?
+    - Which topics are covered in [Lecture](event_type) [11](lec) of [Coen 445](course) ?
+    - Which topics were covered in [lecture](event_type) [4](lec) of [acco 465](course) ?
+    - Which topics were covered in [lecture](event_type) [8](lec) of [engr 371](course) ?
+    - which topics are covered in [Lecture](event_type) [2](lec) of [COMP 474](course) ?
+    - which topics are covered in [Lecture](event_type) [1](lec) of [ENGR 371](course) ?
 
-    - Which topics were covered in [lab](event) [3](lec) of [COMP 474](course) ?
-    - Which topics are covered in [Lab](event) [2](lec) of [COMP 445](course) ?
-    - Which topics are covered in [lab](event) [11](lec) of [Coen 445](course) ?
-    - Which topics were covered in [lab](event) [4](lec) of [acco 465](course) ?
-    - Which topics were covered in [lab](event) [8](lec) of [engr 371](course) ?
-    - which topics are covered in [Lab](event) [2](lec) of [COMP 474](course) ?
-    - which topics are covered in [Lab](event) [1](lec) of [ENGR 371](course) ?
+    - Which topics were covered in [lab](event_type) [3](lec) of [COMP 474](course) ?
+    - Which topics are covered in [Lab](event_type) [2](lec) of [COMP 445](course) ?
+    - Which topics are covered in [lab](event_type) [11](lec) of [Coen 445](course) ?
+    - Which topics were covered in [lab](event_type) [4](lec) of [acco 465](course) ?
+    - Which topics were covered in [lab](event_type) [8](lec) of [engr 371](course) ?
+    - which topics are covered in [Lab](event_type) [2](lec) of [COMP 474](course) ?
+    - which topics are covered in [Lab](event_type) [1](lec) of [ENGR 371](course) ?
 
-    - Which topics were covered in [tutorial](event) [3](lec) of [COMP 474](course) ?
-    - Which topics are covered in [tutorial](event) [2](lec) of [COMP 445](course) ?
-    - Which topics are covered in [tutorial](event) [11](lec) of [Coen 445](course) ?
-    - Which topics were covered in [tutorial](event) [4](lec) of [acco 465](course) ?
-    - Which topics were covered in [Tutorial](event) [8](lec) of [engr 371](course) ?
-    - which topics are covered in [Tutorial](event) [2](lec) of [COMP 474](course) ?
-    - which topics are covered in [Tutorial](event) [1](lec) of [ENGR 371](course) ?
+    - Which topics were covered in [tutorial](event_type) [3](lec) of [COMP 474](course) ?
+    - Which topics are covered in [tutorial](event_type) [2](lec) of [COMP 445](course) ?
+    - Which topics are covered in [tutorial](event_type) [11](lec) of [Coen 445](course) ?
+    - Which topics were covered in [tutorial](event_type) [4](lec) of [acco 465](course) ?
+    - Which topics were covered in [Tutorial](event_type) [8](lec) of [engr 371](course) ?
+    - which topics are covered in [Tutorial](event_type) [2](lec) of [COMP 474](course) ?
+    - which topics are covered in [Tutorial](event_type) [1](lec) of [ENGR 371](course) ?
 
 - intent: courses_from_uni_covering_topic
   examples: |
@@ -256,3 +256,10 @@ nlu:
     - Which courses cover the topic [Mathematics](topic) from [McGill University](university)?
     - Which courses cover [Mathematics](topic) from [McMaster University](university)?
     - Which courses cover the topic [Mathematics](topic) at [Concordia University](university) ?
+
+- intent: count_course_event
+  examples: |
+    - How many [lectures](event_type) are there in [comp 445](course)?
+    - How many [labs](event_type) are there in [Acco 265](course)?
+    - Are there a lot of [tutorials](event_type) in [__oov__](course)
+    - Are there a lot of [__oov__](event_type) in [__oov__](course)? 

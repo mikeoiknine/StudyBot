@@ -17,6 +17,7 @@ intents:
   - courses_offered_by_uni
   - courses_with_labs
   - courses_level_X_at_uni_Y
+  - count_course_event
 
 responses:
   utter_greet:
@@ -53,6 +54,7 @@ actions:
   - action_courses_with_labs
   - action_courses_level_X_at_uni_Y
   - action_topics_in_course_X_eventtype_Y_event_Z
+  - action_course_event_count
 
 entities:
   - course
@@ -60,6 +62,8 @@ entities:
   - university
   - lec
   - level
+  - event
+  - event_type
 
 slots:
   course:
@@ -73,7 +77,7 @@ slots:
     type: any
   level:
     type: any
-  event:
+  event_type:
     type: categorical
     values:
       - lab

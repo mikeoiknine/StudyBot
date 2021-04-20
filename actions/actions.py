@@ -226,7 +226,7 @@ class ActionTopicsCourseXLectureY(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         course = tracker.slots['course']
-        event_type = tracker.slots['event']
+        event_type = tracker.slots['event_type']
         lecture_number = tracker.slots['lec']
 
         lecture_topics = query.get_topics_in_course_X_eventtype_Y_event_Z(graph, course, event_type, lecture_number)
@@ -264,5 +264,37 @@ class ActionCoursesLevelXUniY(Action):
             courseuri = course
             message += f"* {courseuri.split('#')[1]}, "
     
+        dispatcher.utter_message(text=message)
+        return []
+
+class ActionCourseEventCount(Action):
+
+    def name(self) -> Text:
+        return "action_course_event_count"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        course = tracker.slots['course']
+        event_type = tracker.slots['event_type']
+        if course is None or event_type is None:
+            dispatcher.utter_message(text=f"Sorry, I'm not sure I understand")
+            return []
+
+        event_type = event_type.lower().strip()
+        if event_type in set(['lectures', 'lecture', 'lec', 'lecs']):
+            count = query.get_lecture_count(graph, course)
+        elif event_type in set(['labs', 'lab', 'laboratories', 'laboratory']):
+            count = query.get_lab_count(graph, course)
+        elif event_type in set(['tutorials', 'tutorial', 'tut', 'tuts']):
+            count = query.get_tutorial_count(graph, course)
+
+        if count is None:
+            dispatcher.utter_message(text=f"Sorry, there are no {event_type} in this course")
+            return []
+
+        message = f"There are {count} {event_type} in this course"
+
         dispatcher.utter_message(text=message)
         return []
