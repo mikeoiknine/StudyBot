@@ -24,17 +24,22 @@ class ActionCourseInfo(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         course = tracker.slots['course']
-        if course is None:
+        if course is None or not course:
             dispatcher.utter_message(text=f"Sorry, I'm not sure I understand")
             return []
 
-        course_name, course_description = query.get_course_description(graph, course)
-        if course_description is None or course_name is None:
-            dispatcher.utter_message(text=f"Sorry, I can't seem to find a description for {course}")
+        try:
+            course_name, course_description = query.get_course_description(graph, course)
+            if course_description is None or course_name is None:
+                dispatcher.utter_message(text=f"Sorry, I can't seem to find a description for {course}")
+                return []
+            
+            dispatcher.utter_message(text=f"Here's what I found about {course} - {course_name}:\n{course_description}")
             return []
-        
-        dispatcher.utter_message(text=f"Here's what I found about {course} - {course_name}:\n{course_description}")
-        return []
+
+        except:
+            dispatcher.utter_message("Couldn't find this course")
+            return []
 
 
 class ActionCourseTopicsCovered(Action):

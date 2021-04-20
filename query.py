@@ -65,7 +65,7 @@ def get_course_topics(graph, course):
     """
 
     q = prepareQuery(
-        "SELECT ?topics ?urls WHERE { ?course a vivo:Course; focu:topics ?topics. ?topics rdfs:seeAlso ?urls.}",
+        "SELECT ?topics ?urls WHERE { ?course a vivo:Course; focu:topics ?topics. ?topics rdfs:seeAlso ?urls.} GROUP BY ?topics ?urls",
         initNs = {
             "focudata": FOCUDATA,
             "vivo": VIVO,
@@ -261,7 +261,7 @@ def courses_from_uni_covering_topic(graph, topicname, university):
                     focu:courses ?course.
              }}
             GROUP BY ?course ?coursesubject ?coursenumber ?coursename
-        """.format(uniname= university, topic_name= topicname),
+        """.format(uniname= university, topic_name= topicname.lower()),
         initNs = {
             "focu": FOCU,
             "rdf": RDF,
@@ -272,10 +272,7 @@ def courses_from_uni_covering_topic(graph, topicname, university):
         }
     )
     
-    rows = list(graph.query(q, initBindings={
-        "topicname": Literal(topicname.lower()), 
-        "uniname": Literal(university.lower())
-        }))
+    rows = list(graph.query(q))
     print(list(rows))
     if rows is None or not rows:
         return None 
