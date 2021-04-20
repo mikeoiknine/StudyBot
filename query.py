@@ -88,22 +88,59 @@ def get_course_topics(graph, course):
 
 def get_courses_covering_topic(graph, topicname):
     """
-    Query the graph for all courses that cover a given topic
+    Query the graph for all courses that cover a given topic, by checking if their documents contain the topic
     """
 
     print(topicname)
 
     q = prepareQuery(
         """
-        SELECT ?course ?coursesubject ?coursenumber ?coursename WHERE { 
+            SELECT ?course ?coursesubject ?coursenumber ?coursename (COUNT(?doc) as ?doccount) WHERE { 
             ?course a vivo:Course; 
                     dce:subject ?coursesubject;
                     dbp:number ?coursenumber;
                     dbp:name ?coursename;
-                    focu:topics ?topic.
-            ?topic a focu:Topic;
-                    dbp:name ?topicname
-        }    
+                    focu:lectures ?lectures.
+            { 
+                { ?lectures focu:worksheets ?doc.
+                ?doc focu:topics ?topic.
+                } UNION
+                { ?lectures focu:slides ?doc. 
+                ?doc focu:topics ?topic.
+                } UNION
+                {
+                ?lectures focu:readings ?doc.
+                ?doc focu:topics ?topic.
+                }
+            } UNION
+            { ?lecture focu:labs ?lab.
+                { ?lab focu:worksheets ?doc.
+                ?doc focu:topics ?topic.
+                } UNION
+                { ?lab focu:slides ?doc. 
+                ?doc focu:topics ?topic.
+                } UNION
+                {
+                ?lab focu:readings ?doc.
+                ?doc focu:topics ?topic.
+                }
+            } UNION
+            { ?lecture focu:tutorials ?tutorial.
+                { ?tutorial focu:worksheets ?doc.
+                ?doc focu:topics ?topic.
+                } UNION
+                { ?tutorial focu:slides ?doc. 
+                ?doc focu:topics ?topic.
+                } UNION
+                {
+                ?tutorial focu:readings ?doc.
+                ?doc focu:topics ?topic.
+                }
+            }
+            ?topic dbp:name ?topicname. 
+            } GROUP BY ?course ?coursesubject ?coursename ?coursenumber
+            ORDER BY DESC(?doccount)
+
         """,
         initNs = {
             "focudata": FOCUDATA,
@@ -114,8 +151,9 @@ def get_courses_covering_topic(graph, topicname):
             "dbp": DBP
         }
     )
-
-    rows = list(graph.query(q, initBindings={"topicname": Literal(topicname)}))
+    print(q)
+    rows = list(graph.query(q, initBindings={"topicname": Literal(topicname.lower())}))
+    print(rows)
     if rows is None or not rows:
         return None 
 
@@ -125,7 +163,8 @@ def get_courses_covering_topic(graph, topicname):
         coursesubject = row.get("coursesubject", None)
         coursenumber = row.get("coursenumber", None)
         coursename = row.get("coursename", None)
+        doccount = row.get("doccount", None)
 
         if course is not None:
-            courses.append((str(course), coursesubject, coursenumber, coursename))
+            courses.append((str(course), coursesubject, coursenumber, coursename, doccount))
     return courses

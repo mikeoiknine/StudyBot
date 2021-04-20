@@ -85,8 +85,8 @@ class ActionTopicsCoveredInCourse(Action):
 
         message = f"The following courses{'s' if len(courses) > 1 else ''} {'cover' if len(courses) > 1 else 'covers'} the topic {topic}:\n"
         for course in courses:
-            courseuri, coursesubject, coursenumber, coursename = course
-            message += f"* {courseuri.split('#')[1]} - {coursesubject} {coursenumber} {coursename}\n"
+            courseuri, coursesubject, coursenumber, coursename, doccount = course
+            message += f"* {courseuri.split('#')[1]} - {coursesubject} {coursenumber} {coursename} COUNT: {doccount}\n"
     
         dispatcher.utter_message(text=message)
         return []
