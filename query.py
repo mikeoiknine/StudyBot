@@ -356,35 +356,76 @@ def get_courses_with_labs(graph):
             courses.append((str(course)))
     return courses
 
-def get_topics_in_course_X_lecture_Y(graph, course, lecture_number):
+def get_topics_in_course_X_eventtype_Y_event_Z(graph, course, eventtype, lecture_number):
     """
     Query the graph for courses with a lab component
     """
-
+    print(course)
+    print(eventtype)
+    print(lecture_number)
     coursesubject, coursenumber = course.split(" ")
     coursesubject = coursesubject.upper()
     print(coursesubject)
     print(coursenumber)
     print(lecture_number)
 
-    q = prepareQuery(
-        """ SELECT ?lecture ?topic 
-            WHERE {
-            ?s rdf:type vivo:Course;
-                dce:subject ?coursesubject;
-                dbp:number ?coursenumber;
-                focu:lectures ?lecture .
-                {
-                    ?lecture dbp:number ?lecturenumber;
-                            focu:topics ?topic .
-                } UNION
-                {
-                    ?lecture focu:slides ?slides.
-                    ?slides focu:topics ?topic .
-                }
+    rdf_eventtype = ""
+    if eventtype == "lecture": rdf_eventtype = "focu:Lecture"
+    if eventtype == "tutorial": rdf_eventtype = "focu:Tutorial"
+    if eventtype == "lab": rdf_eventtype = "focu:Lab"
 
-            }
-            """,
+    q = prepareQuery(
+        """ SELECT ?lecture ?topic ?docs
+            WHERE {{
+                ?s rdf:type vivo:Course;
+                    dce:subject ?coursesubject;
+                    dbp:number ?coursenumber;
+                    focu:lectures ?lecture .
+                ?lecture dbp:number ?lecturenumber;
+                {{
+                    {{
+                        ?lecture focu:topics ?topic .
+                    }} UNION
+                    {{
+                        ?lecture focu:slides ?docs.
+                        ?docs focu:topics ?topic .
+                    }}
+                    ?lecture a {eventtype}
+                }} UNION
+                {{
+                    ?lecture focu:labs ?event .
+                    {{
+                        ?event focu:slides ?docs.
+                        ?docs focu:topics ?topic.
+                    }} UNION
+                    {{
+                        ?event focu:worksheets ?docs.
+                        ?docs focu:topics ?topic
+                    }} UNION
+                    {{
+                        ?event focu:readings ?docs.
+                        ?docs focu:topics ?topic
+                    }}
+                    ?event a {eventtype}
+                }} UNION
+                {{
+                    ?lecture focu:tutorials ?event .
+                    {{
+                        ?event focu:slides ?docs.
+                        ?docs focu:topics ?topic.
+                    }} UNION
+                    {{
+                        ?event focu:worksheets ?docs.
+                        ?docs focu:topics ?topic
+                    }} UNION
+                    {{
+                        ?event focu:readings ?docs.
+                        ?docs focu:topics ?topic
+                    }}
+                    ?event a {eventtype}
+                }}
+            }}
+            """.format(eventtype = rdf_eventtype),
         initNs = {
             "vivo": VIVO,
             "focu": FOCU,
@@ -398,12 +439,15 @@ def get_topics_in_course_X_lecture_Y(graph, course, lecture_number):
     if rows is None or not rows:
         return None 
 
+    print(rows)
+
     lecturetopics = []
     for row in rows:
         lecture = row.get("lecture", None)
         topic = row.get("topic", None)
+        resource = row.get("docs", None)
         if lecture is not None and topic is not None:
-            lecturetopics.append((str(lecture), str(topic)))
+            lecturetopics.append((str(lecture), str(topic), str(resource)))
     return lecturetopics
 
 def get_courses_level_X_at_uni_Y(graph, level, university):

@@ -89,8 +89,8 @@ stories:
   steps:
     - intent: greet
     - action: utter_greet
-    - intent: topics_in_course_X_lecture_Y
-    - action: action_topics_in_course_X_lecture_Y
+    - intent: topics_in_course_X_eventtype_Y_event_Z
+    - action: action_topics_in_course_X_eventtype_Y_event_Z
 
 - story: get courses with labs
   steps:
