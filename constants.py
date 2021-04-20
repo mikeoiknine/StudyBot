@@ -2,6 +2,7 @@
 COURSE_DATA_CSV = "./data/CSV/course_catalog.csv"
 COURSE_DESCRIPTIONS_CSV = "./data/CSV/course_descriptions.csv"
 COURSE_DATA = "./data/Courses"
+PREPROCESSED_COURSE_DATA = "./data/preprocessed_data/Courses"
 
 # Constants
 CSV_KEYS = ["Course ID", "Subject", "Catalog", "Long Title"]

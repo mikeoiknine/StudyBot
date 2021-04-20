@@ -6,7 +6,7 @@ import json
 def get_spotlight_annotated_file_as_dictionary(file_path):
     headers = {'Accept':'text/xml'}
     file_content = open(file_path, 'r', encoding='utf-8').read()
-    data = {'confidence':'0.35', 'support':'0', "text":file_content}
+    data = {'confidence':'0.5', 'support':'0', "text":file_content}
     r = requests.post("http://localhost:2222/rest/annotate", headers=headers, data=data)
     return(xmltodict.parse(r.content))
 
