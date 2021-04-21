@@ -20,3 +20,6 @@ COURSE_URLS = {
     "COMP_474": "http://concordia.catalog.acalog.com/preview_course_nopop.php?catoid=1&coid=2718",
     "COMP_445": "http://concordia.catalog.acalog.com/preview_course_nopop.php?catoid=1&coid=2713"
 }
+
+# Fuseki Server storing knowledge base
+FUSEKI_BASE_URL = 'http://localhost:3030/graph/'
