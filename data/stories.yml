@@ -36,7 +36,14 @@ stories:
     - intent: about_course
     - action: action_course_info
 
-- story: get course info
+- story: count course event
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: count_course_event
+    - action: action_course_event_count
+
+- story: get topics covered in course
   steps:
     - intent: greet
     - action: utter_greet
@@ -85,23 +92,17 @@ stories:
     - intent: courses_with_labs
     - action: action_courses_with_labs
 
-- story: get topics covered in course X lecture Y
+- story: get topics covered in course event
   steps:
     - intent: greet
     - action: utter_greet
-    - intent: topics_in_course_X_eventtype_Y_event_Z
-    - action: action_topics_in_course_X_eventtype_Y_event_Z
+    - intent: topics_in_course_event
+    - action: action_topics_in_course_event
 
-- story: get courses with labs
+- story: get courses by level
   steps:
     - intent: greet
     - action: utter_greet
-    - intent: courses_level_X_at_uni_Y
-    - action: action_courses_level_X_at_uni_Y
+    - intent: courses_by_level
+    - action: action_courses_by_level
 
-- story: count course event
-  steps:
-    - intent: greet
-    - action: utter_greet
-    - intent: count_course_event
-    - action: action_course_event_count 
