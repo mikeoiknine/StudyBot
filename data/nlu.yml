@@ -107,7 +107,7 @@ nlu:
     - What is [Coen 445](course) about
     - What is [acco 465](course) about
     - What is [__oov__](course) about
-    - Please Describe [Coen 445](course) 
+    - Please Describe [Coen 445](course)
     - Describe [acco 465](course)
     - Describe [__oov__](course)
     - Please describe it
@@ -121,145 +121,222 @@ nlu:
     - Can you tell me about [acco 465](course) ?
     - Can you tell me about [__oov__](course) ?
 
+- intent: count_course_event
+  examples: |
+    - How many [lectures](event_type) are there in [comp 445](course)?
+    - How many [labs](event_type) are there in [Acco 265](course)?
+    - How many [tutorials](event_type) does [coen 212](course) have?
+    - How many [__oov__](event_type) does [__oov__](course) have
+    - How many [__oov__](event_type) does [elec 321](course) have
+    - How many [__oov__](event_type) in [__oov__](course)?
+    - How many [__oov__](event_type) in [Elec 365](course)?
+    - Are there a lot of [tutorials](event_type) in [__oov__](course)
+    - Are there a lot of [tutorials](event_type) in [Coen 445](course)
+    - Are there a lot of [__oov__](event_type) in [__oov__](course)?
+    - Are there a lot of [__oov__](event_type) in [Comp 474](course)?
+
 - intent: about_course_topic
   examples: |
     - What topics are covered in [Coen 445](course)?
     - What topics are covered in [__oov__](course)?
     - What topics are covered in [__oov__](course) ?
     - What topics are covered in [Coen 445](course)
+    - What topics are covered in [coen 212](course)
     - What's covered in [Coen 445](course)?
+    - What's covered in [__oov__](course)?
+    - What's covered in [__oov__](course)
     - What would I learn in [__oov__](course)?
+    - What would I learn in [engl 245](course)?
 
 - intent: topic_which_course
   examples: |
-    - Which courses cover [Knowledge Graphs](topic)?
+    - Which courses cover [Knowledge Graph](topic)?
+    - what courses cover the topic [Knowledge Graph](topic)?
+    - Which courses cover the topic [__oov__](topic)?
+    - What courses cover the topic [__oov__](topic)
     - Which courses cover [computer science](topic)?
+    - Which courses cover [__oov__](topic)?
     - Which classes cover [Networking](topic)?
-    - Which courses cover [Mathematics](topic)?
+    - What courses cover [Mathematics](topic)?
+    - What courses cover [__oov__](topic)?
     - Which courses cover [software engineering](topic)?
     - Which courses cover [Geography](topic)?
-    - Which class covers [Algorithms](topic)?
+    - Whats class covers [Algorithms](topic)?
+    - Whats class covers [__oov__](topic)?
     - Which courses cover [data structures](topic)?
     - Which courses cover [international politics](topic)?
     - Which courses cover [__oov__](topic)?
     - Which courses cover [__oov__](topic)?
-    - Which courses should I take to learn about [politics](topic)?
+    - what courses should I take to learn about [politics](topic)?
     - Which classes should I take if I want to learn [Artificial Intelligence](topic)?
-    - Which courses cover the topic [Knowledge Graph](topic)?
+    - Which classes should I take if I want to learn [artificial Intelligence](topic)
+    - what classes should I take if I want to learn [knowledge graph](topic) ?
+    - Which classes should I take if I want to learn [__oov__](topic) ?
+    - Which courses cover the topic [Knowledge Graph](topic) ?
+    - What courses cover the topic [Knowledge Graph](topic) ?
+    - What courses cover the topic [__oov__](topic) ?
 
 - intent: topic_which_slides
   examples: |
     - Find all slides for lectures that cover the topic [Knowledge Graph](topic)
     - Find all slides for lectures that cover the topic [Artificial intelligence](topic)
+    - Find all slides for lectures that cover the topic [__oov__](topic)
     - Find all slides for lectures that cover the topic [Internet](topic)
     - Find all slides for lectures that cover the topic [networking](topic)
     - Find all slides for lectures that cover the topic [computer science](topic)
-    - Find all slides for lectures that cover [Knowledge Graph](topic)
+    - Find all slides for lectures that cover the topic [__oov__]](topic)
+    - Find all slides for lectures that cover [knowledge graph](topic)
     - Find all slides for lectures that cover [Artificial intelligence](topic)
+    - Find all slides for lectures that cover [artificial intelligence](topic)
+    - Find all slides for lectures that cover [__oov__](topic)
     - Find all slides for lectures that cover [Internet](topic)
     - Find all slides for lectures that cover [networking](topic)
     - Find all slides for lectures that cover [computer science](topic)
     - Which slides cover the topic [Internet](topic)
     - Which slides cover the topic [Mathematics](topic)
     - Which slides cover the topic [data structures](topic)
-    - Which slides cover the topic [Networking](topic)
+    - What slides cover the topic [Networking](topic)
     - Which slides cover the topic [artificial intelligence](topic)
+    - Which slides cover the topic [__oov__](topic)
     - Which slides cover the topic [geography](topic)
     - Which slides cover the [Internet](topic)
     - Which slides cover [networking](topic)
-    - Which slides cover [Internet](topic)
+    - What slides cover [Internet](topic)
+    - What slides cover [knowledge Graph](topic)
+    - What slides cover [__oov__](topic)
     - Which slides cover [computer science](topic)
+    - Which slides cover [Mathematics](topic)
+    - Which slides cover [data structures](topic)
+    - Which slides cover [__oov__](topic)
+    - What slides cover [artificial intelligence](topic)
     - Which slides cover [Mathematics](topic)
     - Which slides cover [data structures](topic)
     - Which slides cover [Networking](topic)
     - Which slides cover [artificial intelligence](topic)
+    - Which slides cover [__oov__](topic)
 
 - intent: courses_no_lecture_slides
   examples: |
     - Which courses have no lecture slides?
     - Which courses don't have lecture slides?
-
-- intent: courses_offered_by_uni
-  examples: |
-    - Which courses are offered by [Concordia University](university)?
-    - Which courses are offered by [McMaster University](university)?
-    - Which courses are offered by [McGill University](university)?
-    - Which courses are offered by [University of Toronto](university)?
-    - Which courses are offered by [University of Waterloo](university)?
-
-- intent: courses_with_labs
-  examples: |
-    - Which courses have a laboratory component?
-    - Which courses have at least one lab?
-    - Which courses have a lab?
-    - Which courses have labs?
-
-- intent: courses_level_X_at_uni_Y
-  examples: |
-    - Which [400](level) courses are offered at [Concordia University](university)?
-    - Which [100](level) courses are offered at [Concordia University](university)?
-    - Which [300](level) courses are offered at [Concordia University](university)?
-    - Which [200](level) courses are offered at [Concordia University](university)?
-    - Which [400](level) courses are offered at [McGill University](university)?
-    - Which [300](level) courses are offered at [McMaster University](university)?
-    - Which [200](level) courses are offered at [University of Toronto](university)?
-    - Which [100](level) courses are offered at [University of Waterloo](university)?
-
-- intent: topics_in_course_X_eventtype_Y_event_Z
-  examples: |
-    - Which topics are covered in [lecture](event_type) [5](lec) of [COMP 474](course) ?
-    - Which topics are covered in [lecture](event_type) [5](lec) of [comp 474](course) ?
-    - Which topics are covered in [lecture](event_type) [5](lec) of [comp 445](course) ?
-    - Which topics were covered in [Lecture](event_type) [3](lec) of [COMP 474](course) ?
-    - Which topics are covered in [lecture](event_type) [2](lec) of [COMP 445](course) ?
-    - Which topics are covered in [Lecture](event_type) [11](lec) of [Coen 445](course) ?
-    - Which topics were covered in [lecture](event_type) [4](lec) of [acco 465](course) ?
-    - Which topics were covered in [lecture](event_type) [8](lec) of [engr 371](course) ?
-    - which topics are covered in [Lecture](event_type) [2](lec) of [COMP 474](course) ?
-    - which topics are covered in [Lecture](event_type) [1](lec) of [ENGR 371](course) ?
-
-    - Which topics were covered in [lab](event_type) [3](lec) of [COMP 474](course) ?
-    - Which topics are covered in [Lab](event_type) [2](lec) of [COMP 445](course) ?
-    - Which topics are covered in [lab](event_type) [11](lec) of [Coen 445](course) ?
-    - Which topics were covered in [lab](event_type) [4](lec) of [acco 465](course) ?
-    - Which topics were covered in [lab](event_type) [8](lec) of [engr 371](course) ?
-    - which topics are covered in [Lab](event_type) [2](lec) of [COMP 474](course) ?
-    - which topics are covered in [Lab](event_type) [1](lec) of [ENGR 371](course) ?
-
-    - Which topics were covered in [tutorial](event_type) [3](lec) of [COMP 474](course) ?
-    - Which topics are covered in [tutorial](event_type) [2](lec) of [COMP 445](course) ?
-    - Which topics are covered in [tutorial](event_type) [11](lec) of [Coen 445](course) ?
-    - Which topics were covered in [tutorial](event_type) [4](lec) of [acco 465](course) ?
-    - Which topics were covered in [Tutorial](event_type) [8](lec) of [engr 371](course) ?
-    - which topics are covered in [Tutorial](event_type) [2](lec) of [COMP 474](course) ?
-    - which topics are covered in [Tutorial](event_type) [1](lec) of [ENGR 371](course) ?
+    - What courses don't have lecture slides
+    - Find me the courses which don't have lecture slides
+    - Which courses have no slides?
 
 - intent: courses_from_uni_covering_topic
   examples: |
-    - Which courses from [Concordia University](university) cover the topic [Mathematics](topic)?
+    - What courses from [Concordia University](university) cover the topic [Mathematics](topic)?
     - Which courses at [Concordia University](university) cover the topic [data structures](topic)?
+    - What courses at [concordia university](university) cover the topic [__oov__](topic)?
     - Which courses at [__oov__](university) cover the topic [__oov__](topic)?
-    - Which courses from [University of Waterloo](university) cover the topic [artificial intelligence](topic)?
+    - What courses from [University of Waterloo](university) cover the topic [artificial intelligence](topic)?
+    - Which courses from [Uuniversity of waterloo](university) cover the topic [__oov__](topic)?
     - Which courses at [Concordia University](university) cover the topic [computer science](topic)?
-    - Which courses from [University of Toronto](university) cover the topic [Networking](topic)?
+    - Which courses from [university of toronto](university) cover the topic [Networking](topic)?
     - Which courses at [Concordia University](university) cover [computer science](topic)?
     - Which courses from [University of Toronto](university) cover [Networking](topic)?
     - Which courses at [McGill University](university) [Mathematics](topic)?
-    - Which courses from [McGill University](university) cover the topic [Mathematics](topic)?
+    - What courses from [McGill University](university) cover the topic [Intelligent Systems](topic)?
+    - Which courses from [McGill University](university) cover the topic [__oov__](topic)?
     - Which courses from [McGill University](university) [Mathematics](topic)?
+    - What courses from [__oov__](university) [Mathematics](topic)?
     - Which courses from [Concordia University](university) cover the topic [Mathematics](topic)?
-    - Which courses cover the topic [Mathematics](topic) at [Concordia University](university) ?
+    - Which courses cover the topic [knowledge graph](topic) at [Concordia University](university) ?
     - Which courses cover the topic [data structures](topic) at [Concordia University](university) ?
+    - What courses cover the topic [__oov__](topic) at [__oov__](university) ?
     - Which courses from [University of Waterloo](university) cover the topic [artificial intelligence](topic)?
     - Which courses cover the topic [computer science](topic) at [Concordia University](university) ?
     - Which courses cover [Networking](topic) from [University of Toronto](university) ?
     - Which courses cover the topic [Mathematics](topic) from [McGill University](university)?
     - Which courses cover [Mathematics](topic) from [McMaster University](university)?
-    - Which courses cover the topic [Mathematics](topic) at [Concordia University](university) ?
+    - Which courses cover the topic [Intelligent Systems](topic) at [Concordia University](university) ?
 
-- intent: count_course_event
+- intent: courses_offered_by_uni
   examples: |
-    - How many [lectures](event_type) are there in [comp 445](course)?
-    - How many [labs](event_type) are there in [Acco 265](course)?
-    - Are there a lot of [tutorials](event_type) in [__oov__](course)
-    - Are there a lot of [__oov__](event_type) in [__oov__](course)? 
+    - Which courses are offered at [Concordia University](university)
+    - Which courses are offered by [concordia university](university)?
+    - what courses are offered by [__oov__](university)
+    - Which courses are offered at [Concordia University](university)
+    - What courses are offered at [concordia university](university)?
+    - what are the courses offered at [concordia university](university)
+    - what are the courses offered at [__oov__](university)
+    - what are the courses offered at [McGill University](university)?
+    - Which courses are offered at [__oov__](university)
+    - What courses are offered by [Concordia University](university)
+    - What courses are offered at [concordia university](university)?
+    - What courses are offered by [__oov__](university)
+    - Which courses are offered at [McMaster University](university)?
+    - Which courses are offered at [mcmaster university](university)?
+    - What courses are offered by [McGill University](university)?
+    - Which courses are offered by [University of Toronto](university)?
+    - Which courses are offered at [university of Toronto](university)?
+    - What courses are offered by [University of Waterloo](university)?
+    - What courses are offered at [__oov__](university)
+
+- intent: courses_with_labs
+  examples: |
+    - Which courses have a laboratory component at [__oov__]?
+    - Which courses have a laboratory component?
+    - Which courses have at least one lab?
+    - Which courses have a lab?
+    - Which courses have labs at [Concordia University]?
+    - Which courses have labs at [concordia university]?
+    - Which courses have labs at [__oov__]?
+
+- intent: topics_in_course_event
+  examples: |
+    - Which topics are covered in [lecture](event_type) [5](lec) of [COMP 474](course) ?
+    - Which topics are covered in [lecture](event_type) [5](lec) of [comp 474](course)?
+    - Which topics are covered in [lecture](event_type) [__oov__](lec) of [comp 445](course) ?
+    - Which topics were covered in [Lecture](event_type) [3](lec) of [COMP 474](course)
+    - Which topics are covered in [lecture](event_type) [__oov__](lec) of [COMP 445](course)
+    - Which topics are covered in [Lecture](event_type) [11](lec) of [__oov__](course) ?
+    - Which topics were covered in [lecture](event_type) [4](lec) of [acco 465](course) ?
+    - Which topics were covered in [lecture](event_type) [8](lec) of [engr 371](course)?
+    - which topics are covered in [Lecture](event_type) [__oov__](lec) of [__oov__](course) ?
+    - which topics are covered in [Lecture](event_type) [1](lec) of [ENGR 371](course)
+
+    - Which topics were covered in [lab](event_type) [3](lec) of [COMP 474](course) ?
+    - Which topics are covered in [Lab](event_type) [2](lec) of [COMP 445](course) ?
+    - What topics are covered in [lab](event_type) [11](lec) of [Coen 445](course)
+    - Which topics were covered in [lab](event_type) [4](lec) of [acco 465](course)?
+    - What topics were covered in [lab](event_type) [8](lec) of [engr 371](course)
+    - which topics are covered in [Lab](event_type) [2](lec) of [COMP 474](course)?
+    - which topics are covered in [Lab](event_type) [1](lec) of [__oov__](course)
+    - What topics were covered in [lab](event_type) [4](lec) of [acco 465](course) ?
+    - Which topics were covered in [lab](event_type) [__oov__](lec) of [engr 371](course)?
+    - which topics are covered in [Lab](event_type) [2](lec) of [COMP 474](course)
+    - which topics are covered in [Lab](event_type) [__oov__](lec) of [__oov__](course) ?
+
+    - Which topics were covered in [tutorial](event_type) [3](lec) of [COMP 474](course) ?
+    - Which topics are covered in [tutorial](event_type) [2](lec) of [COMP 445](course)
+    - What topics are covered in [tutorial](event_type) [11](lec) of [Coen 445](course) ?
+    - Which topics were covered in [tutorial](event_type) [4](lec) of [acco 465](course)
+    - Which topics were covered in [Tutorial](event_type) [8](lec) of [__oov__](course) ?
+    - What topics are covered in [Tutorial](event_type) [2](lec) of [COMP 474](course)?
+    - which topics are covered in [Tutorial](event_type) [1](lec) of [ENGR 371](course) ?
+    - Which topics were covered in [Tutorial](event_type) [__oov__](lec) of [engr 371](course)?
+    - What topics are covered in [Tutorial](event_type) [2](lec) of [COMP 474](course) ?
+    - which topics are covered in [Tutorial](event_type) [__oov__](lec) of [__oov__](course)
+
+- intent: courses_by_level
+  examples: |
+    - Which [400](level) courses are offered at [Concordia University](university) ?
+    - Which [100](level) courses are offered in [Concordia University](university)?
+    - What [400](level) courses are offered at [Concordia University](university) ?
+    - Which [__oov__](level) courses are offered by [__oov__](university)?
+    - Which [300](level) courses are offered at [concordia university](university) ?
+    - what [100](level) courses are offered by [Concordia University](university)
+    - what [__oov__](level) courses are offered by [concordia university](university)
+    - Which [300](level) courses are offered at [Concordia University](university)?
+    - Which [__oov__](level) courses are offered at [concordia university](university)?
+    - Which [500](level) courses are offered at [concordia university](university)?
+    - Which [200](level) courses are offered by [Concordia University](university)?
+    - what [200](level) courses are offered at [concordia university](university)?
+    - Which [400](level) courses are offered at [McGill University](university)?
+    - Which [300](level) courses are offered by [mcmaster university](university)?
+    - Which [200](level) courses are offered at [University of Toronto](university)?
+    - Which [100](level) courses are offered by [University of Waterloo](university)?
+    - what [__oov__](level) courses are offered by [__oov__](university)
+    - Which [200](level) courses are offered at [University of Toronto](university)?
+    - what [100](level) courses are offered by [University of Waterloo](university)?

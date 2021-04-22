@@ -9,6 +9,7 @@ intents:
   - mood_unhappy
   - bot_challenge
   - about_course
+  - count_course_event
   - about_course_topic
   - topic_which_course
   - topic_which_slides
@@ -16,8 +17,8 @@ intents:
   - courses_from_uni_covering_topic
   - courses_offered_by_uni
   - courses_with_labs
-  - courses_level_X_at_uni_Y
-  - count_course_event
+  - topics_in_course_event
+  - courses_by_level
 
 responses:
   utter_greet:
@@ -40,11 +41,12 @@ responses:
   - text: "I am a bot, powered by Rasa."
 
 session_config:
-  session_expiration_time: 60
+  session_expiration_time: 60000
   carry_over_slots_to_new_session: true
 
 actions:
   - action_course_info
+  - action_course_event_count
   - action_course_topics_covered
   - action_topic_which_courses
   - action_topic_which_slides
@@ -52,9 +54,8 @@ actions:
   - action_courses_from_uni_covering_topic
   - action_courses_offered_by_uni
   - action_courses_with_labs
-  - action_courses_level_X_at_uni_Y
-  - action_topics_in_course_X_eventtype_Y_event_Z
-  - action_course_event_count
+  - action_topics_in_course_event
+  - action_courses_by_level
 
 entities:
   - course
